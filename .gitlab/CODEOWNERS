@@ -1,0 +1,19 @@
+# Default owner for everything
+
+- @csning1998
+
+[Documentation]
+/.gitlab/ @csning1998
+/docs/ @csning1998
+/memory/ @csning1998
+CODE_OF_CONDUCT.md @csning1998
+LICENSE @csning1998
+README.md @csning1998
+/README-Repository.md @csning1998
+
+[Critical Infrastructure]
+/.gitlab-ci.yml @csning1998
+/.gitignore @csning1998
+/config.toml @csning1998
+/skills/ @csning1998
+/terraform/ @csning1998

@@ -1,0 +1,38 @@
+
+terraform {
+  required_version = ">= 1.14.0"
+  required_providers {
+    gitlab = {
+      source  = "gitlabhq/gitlab"
+      version = "19.2.0"
+    }
+    vault = {
+      source  = "hashicorp/vault"
+      version = "5.5.0"
+    }
+  }
+
+  backend "http" {
+    address        = "https://gitlab.com/api/v4/projects/85419450/terraform/state/meta-gitlab-project"
+    lock_address   = "https://gitlab.com/api/v4/projects/85419450/terraform/state/meta-gitlab-project/lock"
+    unlock_address = "https://gitlab.com/api/v4/projects/85419450/terraform/state/meta-gitlab-project/lock"
+    lock_method    = "POST"
+    unlock_method  = "DELETE"
+    retry_wait_min = 5
+  }
+}
+
+provider "gitlab" {
+  token = ephemeral.vault_kv_secret_v2.state_backend.data["token"]
+}
+
+provider "vault" {
+  address      = "https://127.0.0.1:8200"
+  ca_cert_file = pathexpand("~/GitLab/meta-platform/vault/tls/ca.pem")
+  token        = local.vault_token
+}
+
+locals {
+  # Vault CLI's own token-helper file. Authenticating to Vault cannot depend on a secret stored in Vault.
+  vault_token = trimspace(file(pathexpand("~/.vault-token")))
+}

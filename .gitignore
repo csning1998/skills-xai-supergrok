@@ -3,6 +3,12 @@
 
 /*
 !/.gitignore
+!/.gitlab-ci.yml
+!/.mdlrc
+!/.yamllint.yml
+!/README-Repository.md
+!/.gitlab/
+!/.gitlab/**
 
 # User skills consumed by Grok.
 !/skills/
@@ -22,3 +28,13 @@
 
 # User harness policy. Credentials live in auth.json, which remains ignored.
 !/config.toml
+
+# GitLab project provision layer. Local .terraform and state files stay ignored.
+!/terraform/
+!/terraform/**
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/*.tfplan
+**/crash.log
+**/crash.*.log
