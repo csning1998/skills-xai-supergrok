@@ -1,0 +1,24 @@
+# Allow-list. ~/.grok is a product home directory. Only user-authored trees are tracked.
+# Runtime state, credentials, binaries, vendor bundles, session logs, and the official user-guide stay untracked.
+
+/*
+!/.gitignore
+
+# User skills consumed by Grok.
+!/skills/
+!/skills/**
+
+# User Second Brain documentation and markdown linters.
+!/docs/
+/docs/*
+!/docs/.markdownlint.json
+!/docs/.mdlrc
+!/docs/second-brain/
+!/docs/second-brain/**
+
+# User memory notes that skills and sessions read.
+!/memory/
+!/memory/**
+
+# User harness policy. Credentials live in auth.json, which remains ignored.
+!/config.toml
