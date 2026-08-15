@@ -26,8 +26,9 @@
 !/memory/
 !/memory/**
 
-# User harness policy. Credentials live in auth.json, which remains ignored.
-!/config.toml
+# Tracked template only. Live ~/.grok/config.toml is rewritten by the TUI
+# (reasoning effort, theme, privacy ack) and stays covered by /*.
+!/config.example.toml
 
 # GitLab project provision layer. Local .terraform and state files stay ignored.
 !/terraform/

@@ -1,11 +1,11 @@
 ---
-name: inspect-gitlab-mrs
+name: skill-inspect-gitlab-mrs
 description: >
   Enumerate GitLab merge requests with glab and return a stable field
   contract (iid, title, web_url, merged_at, description, summary
   paragraph). Use when the user asks to inspect, list, or pull GitLab
-  MRs, or runs /inspect-gitlab-mrs. Read-only. This is a module; the
-  write layer is /sync-gitlab-mrs-to-notion.
+  MRs, or runs /skill-inspect-gitlab-mrs. Read-only. This is a module;
+  the write layer is /skill-sync-gitlab-mrs-to-notion.
 metadata:
   short-description: "List GitLab MRs via glab"
 ---

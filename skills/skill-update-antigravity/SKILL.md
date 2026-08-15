@@ -1,10 +1,10 @@
 ---
-name: update-antigravity
+name: skill-update-antigravity
 description: >
   Update Google Antigravity IDE and Antigravity 2.0 Agent Manager on Linux
   from official tarballs on antigravity.google/download. Use when the user
   asks to update Antigravity, upgrade Antigravity IDE, update Agent Manager,
-  refresh the Antigravity hub, or runs /update-antigravity.
+  refresh the Antigravity hub, or runs /skill-update-antigravity.
 metadata:
   short-description: "Update Antigravity IDE and Agent Manager"
 ---
@@ -16,7 +16,7 @@ Update the product the user named. If the user says "Antigravity", "both", or "t
 Run `scripts/probe.py` first. It prints official Linux x64 URLs plus every detected local install.
 
 ```bash
-python3 "$HOME/.grok/skills/update-antigravity/scripts/probe.py"
+python3 "$HOME/.grok/skills/skill-update-antigravity/scripts/probe.py"
 ```
 
 Treat `ideVersion` in `product.json` as the IDE version. `antigravity-ide --version` reports the VS Code engine and MUST NOT be used for the upgrade decision.
@@ -88,7 +88,7 @@ Preserve desktop icons from the old tree before moving it:
 - Hub: extract `icon.png` from `app.asar` if the staged tree has no `$root/resources/icon.png`
 
 ```bash
-python3 "$HOME/.grok/skills/update-antigravity/scripts/probe.py" extract-hub-icon \
+python3 "$HOME/.grok/skills/skill-update-antigravity/scripts/probe.py" extract-hub-icon \
   "$STAGED/resources/app.asar" "$STAGED/resources/icon.png"
 ```
 

@@ -1,0 +1,27 @@
+# Copy to ~/.grok/config.toml on a new machine.
+# The live file is untracked. /settings and /effort write it.
+
+[cli]
+installer = "internal"
+auto_update = true
+
+[ui]
+max_thoughts_width = 120
+fork_secondary_model = "grok-4.5"
+yolo = false
+compact_mode = true
+permission_mode = "always-approve"
+theme = "auto"
+auto_dark_theme = "rosepine-moon"
+auto_light_theme = "grokday"
+
+[[marketplace.sources]]
+name = "xAI Official"
+git = "https://github.com/xai-org/plugin-marketplace.git"
+
+[models]
+default = "grok-4.6"
+default_reasoning_effort = "This is overridden by Grok by default"
+
+[compat.claude]
+skills = false

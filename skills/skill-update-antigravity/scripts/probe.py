@@ -32,7 +32,7 @@ def fetch(url: str) -> bytes:
     req = urllib.request.Request(
         url,
         headers={
-            "User-Agent": "update-antigravity-skill",
+            "User-Agent": "skill-update-antigravity",
             "Accept-Encoding": "gzip, deflate, identity",
         },
     )

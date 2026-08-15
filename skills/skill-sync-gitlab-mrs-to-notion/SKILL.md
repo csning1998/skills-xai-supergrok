@@ -1,10 +1,11 @@
 ---
-name: sync-gitlab-mrs-to-notion
+name: skill-sync-gitlab-mrs-to-notion
 description: >
-  Orchestrate inspect-gitlab-mrs and inspect-notion-tasks, then create
-  Notion Task pages for merged GitLab MRs that have no matching row.
-  Use when the user asks to check, register, or sync GitLab MRs against
-  Notion Tasks, or runs /sync-gitlab-mrs-to-notion.
+  Orchestrate skill-inspect-gitlab-mrs and skill-inspect-notion-tasks,
+  then create Notion Task pages for merged GitLab MRs that have no
+  matching row. Use when the user asks to check, register, or sync
+  GitLab MRs against Notion Tasks, or runs
+  /skill-sync-gitlab-mrs-to-notion.
 metadata:
   short-description: "Sync merged GitLab MRs into Notion Tasks"
 ---
@@ -17,15 +18,15 @@ This skill is the write layer. It does not restate GitLab commands or Notion ide
 
 Before any other step, read both files in full and follow them:
 
-- `/home/csning1998/.grok/skills/inspect-gitlab-mrs/SKILL.md`
-- `/home/csning1998/.grok/skills/inspect-notion-tasks/SKILL.md`
+- `/home/csning1998/.grok/skills/skill-inspect-gitlab-mrs/SKILL.md`
+- `/home/csning1998/.grok/skills/skill-inspect-notion-tasks/SKILL.md`
 
 Do not copy their identifiers, queries, or `glab` flags into this file.
 
 ## Step 1. Collect inputs
 
-1. Run `inspect-gitlab-mrs` for the user-named group or repository. Keep the module's record contract, including `summary_paragraph`.
-2. Run `inspect-notion-tasks` with its default GitLab-style registration query. Keep `Name`, `url`, and parsed iid tokens.
+1. Run `skill-inspect-gitlab-mrs` for the user-named group or repository. Keep the module's record contract, including `summary_paragraph`.
+2. Run `skill-inspect-notion-tasks` with its default GitLab-style registration query. Keep `Name`, `url`, and parsed iid tokens.
 
 If the user only asked to check or compare, stop after Step 2 and print the candidate list. Create pages only when the user asked to register, sync, write, or otherwise create the missing entries.
 
@@ -40,7 +41,7 @@ Any merged MR that fails this rule is a creation candidate. Before trusting a la
 
 ## Step 3. Build payloads
 
-Take identifiers, icon, Assignee, Context, Related Goal, and `data_source_id` from `inspect-notion-tasks`. Take MR fields and `summary_paragraph` from `inspect-gitlab-mrs`.
+Take identifiers, icon, Assignee, Context, Related Goal, and `data_source_id` from `skill-inspect-notion-tasks`. Take MR fields and `summary_paragraph` from `skill-inspect-gitlab-mrs`.
 
 Populate these properties for every page:
 
@@ -50,13 +51,13 @@ Populate these properties for every page:
 - `Status`: `"Done"`.
 - `Important`: `"__YES__"`.
 - `isTaskComplete`: `"__YES__"`.
-- `Assignee`: the Notion user ID from `inspect-notion-tasks`.
-- `Context`: the completed-computer-work Context from `inspect-notion-tasks`.
+- `Assignee`: the Notion user ID from `skill-inspect-notion-tasks`.
+- `Context`: the completed-computer-work Context from `skill-inspect-notion-tasks`.
 - `userDefined:URL`: the MR `web_url`.
-- `Related Goal`: the On-premise Platform Goal URL from `inspect-notion-tasks`, unless the user excluded that project from Goal linkage.
+- `Related Goal`: the On-premise Platform Goal URL from `skill-inspect-notion-tasks`, unless the user excluded that project from Goal linkage.
 - `date:Completed At:start`: convert `merged_at` to Asia/Taipei (`GMT+8`) and write it with an explicit `+08:00` offset, for example `2026-08-06T17:34:38+08:00`. Do not write the raw UTC value and do not label it `UTC+8`. Convert in Python with `datetime.fromisoformat(...).astimezone(timezone(timedelta(hours=8)))`.
 - `date:Completed At:is_datetime`: `1`.
-- `icon`: the Task icon string from `inspect-notion-tasks`.
+- `icon`: the Task icon string from `skill-inspect-notion-tasks`.
 
 ### Dense-day clustering for Do Dates and Started At
 
@@ -73,7 +74,7 @@ Omit all four properties when the MR is the only one for that project on that GM
 
 ## Step 4. Create pages
 
-Load `notion__notion-create-pages` through `search_tool` then `use_tool`. Parent is `{"type": "data_source_id", "data_source_id": "<id from inspect-notion-tasks>"}`.
+Load `notion__notion-create-pages` through `search_tool` then `use_tool`. Parent is `{"type": "data_source_id", "data_source_id": "<id from skill-inspect-notion-tasks>"}`.
 
 Keep each batch around four pages so a blocked request is cheap to bisect.
 

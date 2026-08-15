@@ -1,11 +1,11 @@
 ---
-name: inspect-notion-tasks
+name: skill-inspect-notion-tasks
 description: >
   Inspect the Failure Managements Notion Tasks database: workspace
   identity, schema, fixed identifiers, and SQL queries over existing
   rows. Use when the user asks to inspect, query, or look up Notion
-  Tasks, or runs /inspect-notion-tasks. Read-only. This is a module;
-  the write layer is /sync-gitlab-mrs-to-notion.
+  Tasks, or runs /skill-inspect-notion-tasks. Read-only. This is a
+  module; the write layer is /skill-sync-gitlab-mrs-to-notion.
 metadata:
   short-description: "Query the Notion Tasks database"
 ---
