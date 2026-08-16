@@ -1,5 +1,6 @@
 ---
 name: skill-inspect-second-brain
+effort: low
 description: >
   Read the owner Second Brain documentation under
   ~/.grok/docs/second-brain before locating or filling a Notion page
@@ -12,15 +13,35 @@ metadata:
 
 # Inspect Second Brain
 
-Read these files in order before any Notion search.
+Layer for knowledge locate.
 
-1. `/home/csning1998/.grok/docs/second-brain/00-operating-contract.md`
-2. `/home/csning1998/.grok/docs/second-brain/README.md`
-3. `/home/csning1998/.grok/docs/second-brain/02-master-catalog.md`
-4. `/home/csning1998/.grok/docs/second-brain/01-locate.md`
-5. `/home/csning1998/.grok/docs/second-brain/03-identifiers.md`
-6. The entity file that matches the object in the request.
+## When to Use
 
-Entity files live under folders `10` through `70`. Open `02-master-catalog.md` to resolve Object to path.
+The owner asked about Second Brain structure, or another layer needs identifiers.
 
-Do not rediscover a `collection://` ID that `03-identifiers.md` already records. Do not write Resource, Archives, Allocation, or Area `TOP OF MIND`.
+## Input Requirements
+
+- Required: the Notion entity name from the owner, or `object` from the calling layer.
+
+## Process
+
+1. Fill `{"object":"<entity>"}`.
+2. Call `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md`.
+3. Report `SecondBrainLocate`.
+
+## Output
+
+Artifact `SecondBrainLocate` (same JSON as the module).
+
+## Validation Checklist
+
+- [ ] Collection id came from the module JSON
+- [ ] No YouTube fill was added
+
+## Backtrack Triggers
+
+- Module `ok` false: stop. The object is not in the catalog.
+
+## Example
+
+Owner asks where Resources live. Layer sends `{"object":"Resources"}`.

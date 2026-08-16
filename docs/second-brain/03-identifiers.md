@@ -76,7 +76,6 @@ Knowledge Base Topics and CS Topics share the live title `Topics`. Distinguish t
 | Notes                     | `316919d4-1936-81bb-93b1-000b2f5298db` | `https://app.notion.com/p/316919d4193681ddace9dad6e1a37461` |
 | Topics                    | `316919d4-1936-811b-a0f3-000bc17b8c49` | `https://app.notion.com/p/316919d41936812088cae5ff8ffcedcd` |
 | Resources                 | `316919d4-1936-8163-bfbf-000bb3d012ce` | `https://app.notion.com/p/316919d41936814d83f8d8e1d5c9b544` |
-| Notebooks                 | `316919d4-1936-81b1-8b56-000b0aafd8bc` | `https://app.notion.com/p/316919d41936817c8e1cefe0322e6a98` |
 | Contacts                  | `316919d4-1936-814d-b8fc-000ba3f05e8b` | `https://app.notion.com/p/316919d4193681128c97d1faca08a153` |
 | Fear Setting Database     | `316919d4-1936-8112-8cd7-000bb445053e` | `https://app.notion.com/p/316919d41936813297f4e675e72f45fd` |
 | Articles                  | `2f8919d4-1936-817b-8ccd-000bc34fb63f` | `https://app.notion.com/p/2f8919d41936812e8414c72e753a691c` |

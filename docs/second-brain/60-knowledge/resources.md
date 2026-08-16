@@ -38,7 +38,6 @@ Fill the columns below only after the owner asked to write a Resource.
 | `Rating`                | select   | One of `★★★★★`, `★★★★`, `★★★`, `★★`, `★`.                                                                                                                                                          |
 | `Related Topic`         | relation | Knowledge Base Topics.                                                                                                                                                                             |
 | `Related Note`          | relation | Optional.                                                                                                                                                                                          |
-| `Related Notebook`      | relation | Optional.                                                                                                                                                                                          |
 | `Related Area`          | relation | Optional. Do not set Area `TOP OF MIND`.                                                                                                                                                           |
 | `Related Goal`          | relation | Optional.                                                                                                                                                                                          |
 | `Related Project`       | relation | Optional.                                                                                                                                                                                          |
@@ -50,4 +49,4 @@ Leave `Author (Notion)` and `AI Summary` empty unless the owner asked.
 
 ## Do not write
 
-Button `Archive Now`. Formula and rollup properties including `Resource Report`, `Notes/Refs Count`, `Topic Areas`, `Topic Notebook`.
+Button `Archive Now`. Formula and rollup properties including `Resource Report`, `Notes/Refs Count`, `Topic Areas`.

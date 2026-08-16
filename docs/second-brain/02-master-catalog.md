@@ -40,14 +40,13 @@ Folder numbers follow System Metadatabase H2 order. Extra data sources sit in `7
 | 60 Knowledge             | Notes                     | `60-knowledge/notes.md`                               | Create only when asked.               |
 | 60 Knowledge             | Topics                    | `60-knowledge/topics.md`                              | Knowledge Base topic.                 |
 | 60 Knowledge             | Resources                 | `60-knowledge/resources.md`                           | Do not write.                         |
-| 60 Knowledge             | Notebooks                 | `60-knowledge/notebooks.md`                           | Read unless asked.                    |
 | 60 Knowledge             | Contacts                  | `60-knowledge/contacts.md`                            | Optional relation.                    |
 | 70 Extras                | Dashboard Database        | `70-extras/dashboard-database.md`                     | Catalog of surfaces.                  |
 | 70 Extras                | Fear Setting Database     | `70-extras/fear-setting.md`                           | Owner-manual.                         |
-| 70 Extras                | Articles                  | `70-extras/articles.md`                               | CS notebook. Not Notes.               |
+| 70 Extras                | Articles                  | `70-extras/articles.md`                               | Computer Science articles. Not Notes. |
 | 70 Extras                | CS Topics                 | `70-extras/cs-topics.md`                              | Distinct from Knowledge Base Topics.  |
 
-Count is 40 data sources. System Metadatabase lists 36. Folder `70-extras/` holds the other four. Time Tracker appears in the Metadatabase ERD as a Task relation, not as a standalone data source. The Google Drive File relation on Tasks returned `object_not_found`.
+Count is 39 data sources. System Metadatabase lists 36. Folder `70-extras/` holds four extras. Time Tracker appears in the Metadatabase ERD as a Task relation, not as a standalone data source. The Google Drive File relation on Tasks returned `object_not_found`.
 
 Knowledge Base Topics and CS Topics share the live title `Topics`. Use the Object column in this table, then the `collection://` ID in `03-identifiers.md`.
 

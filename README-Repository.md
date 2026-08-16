@@ -101,5 +101,5 @@ Verify the Bastion Vault instance under `meta-platform` is unsealed. Prior to ex
 
 ```bash
 export TF_HTTP_USERNAME='gitlab-ci-token'
-export TF_HTTP_PASSWORD=$(VAULT_ADDR='[https://127.0.0.1:8200](https://127.0.0.1:8200)' VAULT_CACERT="/home/csning1998/GitLab/meta-platform/vault/tls/ca.pem" VAULT_TOKEN=$(cat$HOME/.vault-token) vault kv get -field=token secret/meta-platform-credentials/state-backend)
+export TF_HTTP_PASSWORD=$(VAULT_ADDR='https://127.0.0.1:8200' VAULT_CACERT="$HOME/GitLab/meta-platform/vault/tls/ca.pem" VAULT_TOKEN=$(cat $HOME/.vault-token) vault kv get -field=token secret/meta-platform-credentials/state-backend)
 ```

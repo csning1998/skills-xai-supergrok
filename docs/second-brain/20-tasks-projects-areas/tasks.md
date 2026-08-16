@@ -70,4 +70,4 @@ Do not substitute a schema-level S3 URL for `icon`. The schema icon hash `61491c
 
 ## Create call
 
-Parent is `{"type": "data_source_id", "data_source_id": "<Tasks UUID in 03-identifiers.md>"}`. Keep a batch near four pages.
+Parent is `{"type": "data_source_id", "data_source_id": "<Tasks UUID in 03-identifiers.md>"}`. Send one `payload_path` per Task. Keep about four creates in one turn.

@@ -1,6 +1,6 @@
 # Topics
 
-Topics is a Knowledge Base topic tag. Notes, Resources, Notebooks, Journal, Projects, and Areas may hang from Topics. CS Topics is a different data source.
+Topics is a Knowledge Base topic tag. Notes, Resources, Journal, Projects, and Areas may hang from Topics. CS Topics is a different data source.
 
 ## Locate
 
@@ -29,7 +29,6 @@ Do not query CS Topics (`collection://2f8919d4-1936-8138-9e39-000b52d840d5`) whe
 | `Related Area`          | relation | Optional. Do not set Area `TOP OF MIND`.                   |
 | `Related Note`          | relation | Prefer writing the link on Notes.                          |
 | `Related Resource`      | relation | Prefer writing the link on Resources.                      |
-| `Related Notebook`      | relation | Prefer writing the link on Notebooks.                      |
 | `Related Project`       | relation | Optional.                                                  |
 | `Related Journal Entry` | relation | Optional.                                                  |
 | `Related CS Articles`   | relation | Optional Articles pages.                                   |
@@ -37,4 +36,4 @@ Do not query CS Topics (`collection://2f8919d4-1936-8138-9e39-000b52d840d5`) whe
 
 ## Do not write
 
-Button `Archive Now`. Rollup and formula properties including `Notes Count`, `Resources Count`, `Notebooks Count`, `Projects Count`, `Journal Entries Count`, `Topic Report`.
+Button `Archive Now`. Rollup and formula properties including `Notes Count`, `Resources Count`, `Projects Count`, `Journal Entries Count`, `Topic Report`.

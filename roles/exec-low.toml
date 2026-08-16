@@ -1,0 +1,4 @@
+# Owner role. Spawn for skill effort low. Do not inherit the parent extra-high budget.
+description = "Low-effort executor for mapped JSON and basic tool calls"
+default_capability_mode = "all"
+reasoning_effort = "low"

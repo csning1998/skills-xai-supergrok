@@ -20,7 +20,7 @@ Area `TOP OF MIND` and the `Tasks & Action View` section titled `Today + Top Of 
 
 ## Articles and CS Topics
 
-See `../70-extras/articles.md` and `../70-extras/cs-topics.md`. Articles is a specialist notebook. CS Topics is not Knowledge Base Topics.
+See `../70-extras/articles.md` and `../70-extras/cs-topics.md`. Articles holds Computer Science articles. CS Topics is not Knowledge Base Topics.
 
 ## Fear Setting Database
 

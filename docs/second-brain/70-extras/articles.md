@@ -1,6 +1,6 @@
 # Articles
 
-Articles is a Computer Science notebook. Articles uses the same `Status` and `Note Type` values as Notes. Articles is not Notes. Create an Articles row only when the owner asked for a Computer Science article.
+Articles holds Computer Science articles. Articles uses the same `Status` and `Note Type` values as Notes. Articles is not Notes. Create an Articles row only when the owner asked for a Computer Science article.
 
 ## Locate
 
@@ -45,7 +45,6 @@ WHERE Title LIKE '%Kubernetes%'
 | `Related CS Topics` | relation     | CS Topics pages. Do not use Knowledge Base Topics here.                                         |
 | `Main Skills`       | relation     | Limit 1. One CS Topics page.                                                                    |
 | `Related Topic`     | relation     | Optional Knowledge Base Topic.                                                                  |
-| `Related Notebook`  | relation     | Optional.                                                                                       |
 | `Related Project`   | relation     | Optional.                                                                                       |
 | `Related Skills`    | multi_select | Existing skill tags only. Do not invent a tag.                                                  |
 | `userDefined:URL`   | url          | Source URL when one exists.                                                                     |

@@ -53,7 +53,7 @@ A writable property is defined in exactly one entity file. IDs live only in `03-
 | `30-habits-journal/` | System Databases: Habits & Journal |
 | `40-finance/` | System Databases: Fiscal Year & Monthly Budget, Income & Expenditures, Allocation & Wishlist |
 | `50-workout-meals/` | System Databases: Workout Tracker & Meal Planner |
-| `60-knowledge/` | System Databases: Knowledge Base: Notes, Topics, Resources, Notebooks, Contacts |
+| `60-knowledge/` | System Databases: Knowledge Base: Notes, Topics, Resources, Contacts |
 | `70-extras/` | Outside Metadatabase |
 
 Each H3 under those H2 headings has one locate and fill file. Allocation is unused and has no file.

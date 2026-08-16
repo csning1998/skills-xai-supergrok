@@ -1,2 +1,0 @@
-rules "all", "~MD013"
-rule_override :MD007, :indent => 4

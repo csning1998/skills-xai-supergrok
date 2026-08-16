@@ -1,0 +1,4 @@
+# Owner role. Spawn for skill effort medium. Do not inherit the parent extra-high budget.
+description = "Medium-effort executor for clear layer pipelines"
+default_capability_mode = "all"
+reasoning_effort = "medium"

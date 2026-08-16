@@ -14,6 +14,10 @@
 !/skills/
 !/skills/**
 
+# Owner subagent roles (effort bands). Bundled roles stay untracked.
+!/roles/
+!/roles/**
+
 # User Second Brain documentation and markdown linters.
 !/docs/
 /docs/*
@@ -21,6 +25,8 @@
 !/docs/.mdlrc
 !/docs/second-brain/
 !/docs/second-brain/**
+!/docs/skill-system/
+!/docs/skill-system/**
 
 # User memory notes that skills and sessions read.
 !/memory/

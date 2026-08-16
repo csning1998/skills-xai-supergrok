@@ -1,61 +1,58 @@
 ---
 name: skill-inspect-gitlab-mrs
+effort: low
 description: >
   Enumerate GitLab merge requests with glab and return a stable field
-  contract (iid, title, web_url, merged_at, description, summary
-  paragraph). Use when the user asks to inspect, list, or pull GitLab
-  MRs, or runs /skill-inspect-gitlab-mrs. Read-only. This is a module;
-  the write layer is /skill-sync-gitlab-mrs-to-notion.
+  contract (iid, title, web_url, merged_at, description). Use when the
+  user asks to inspect, list, or pull GitLab MRs, or runs
+  /skill-inspect-gitlab-mrs. Read-only. The write layer is
+  /skill-sync-gitlab-mrs-to-notion.
 metadata:
   short-description: "List GitLab MRs via glab"
 ---
 
 # Inspect GitLab MRs
 
-Read GitLab merge requests with `glab` and return structured records. Do not create or update Notion pages from this skill.
+Layer for delivery read on GitLab.
 
-If the user did not name a group or repository, ask for that target before listing.
+## When to Use
 
-## Auth
+The owner asked to list or inspect merge requests.
 
-Confirm `glab` is authenticated with `glab auth status` before any `glab mr list` call.
+## Input Requirements
 
-## Enumerate
+- Required: group or `owner/repo` from the owner in this turn.
 
-Pull MRs in JSON. That JSON already includes the full MR `description` field, so a separate `glab mr view` per MR is unnecessary.
+## Process
 
-```bash
-glab mr list --group <group> --all --per-page 100 --page 1 --output json
-glab mr list -R <owner>/<repo> --all --per-page 100 --page 1 --output json
+1. If the target is missing, ask for it.
+2. Fill module JSON and call `~/.grok/skills/skill-module-inspect-gitlab-mrs/SKILL.md`.
+
+```json
+{
+  "target_type": "repo",
+  "target": "owner/repo",
+  "state": "merged"
+}
 ```
 
-Increment `--page` until a page returns an empty array. Merge pages and deduplicate by `id`.
+`state` is `merged` unless the owner named another state.
 
-Default filter is `"state": "merged"`. Apply a different state only when the user asked for it.
+3. When the owner asked for descriptions, fill `summary_paragraph` from each `description`. Take the first paragraph after `## Summary` or `## Description`. If neither heading exists, use the first non-heading paragraph. Normalize `\r\n` to `\n`. Reject a bare heading such as `## Changes`.
 
-## Record contract
+## Output
 
-Keep these fields for every retained MR:
+Artifact `GitlabMrList` plus optional `summary_paragraph` on each record.
 
-- `id`
-- `iid`
-- `title`
-- `web_url`
-- `merged_at` (raw GitLab timestamp; do not convert the timezone here)
-- `description` (full body, with `\r\n` normalized to `\n`)
-- `project` (use `references.full` when present, otherwise the path GitLab already put on the record)
-- `summary_paragraph` (see below)
+## Validation Checklist
 
-Do not invent extra fields.
+- [ ] Timezone conversion was not applied here
+- [ ] No Notion page was created
 
-## summary_paragraph
+## Backtrack Triggers
 
-Take the first paragraph after the body's `## Summary` or `## Description` heading, with inline code backticks preserved. If neither heading exists, use the first non-heading paragraph.
+- Module `ok` false: report `error` and stop.
 
-Normalize `\r\n` to `\n` before splitting. Several MR bodies use CRLF, and a naive `\n\n` split then fails.
+## Example
 
-Reject a bare heading such as `## Changes`. The value MUST be a real sentence.
-
-## Report
-
-When this skill is invoked on its own, report the target, the retained count, and a compact table of `iid`, `title`, `merged_at`, and `web_url`. Include `summary_paragraph` only when the user asked for descriptions.
+`/skill-inspect-gitlab-mrs` plus a repo path lists merged MRs.

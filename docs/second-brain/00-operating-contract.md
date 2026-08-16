@@ -7,7 +7,7 @@ The contract overrides template marketing copy and unused schema. When a live pr
 1. Locate a surface through `02-master-catalog.md`, `01-locate.md`, and `03-identifiers.md` before calling Notion search.
 2. Set Task `Related Goal` when filing a Task.
 3. Convert `merged_at` to Asia/Taipei with an explicit `+08:00` offset when writing Task `Completed At`.
-4. Scan page `content` for `{{`, `}}`, or `%{` before `notion__notion-create-pages`.
+4. Scan every string written to Notion, including properties and page `content`, for `{{`, `}}`, or `%{` before create or update.
 5. Stop after a candidate list when the owner only asked to check or compare.
 
 ## Agent MUST NOT
@@ -22,6 +22,7 @@ The contract overrides template marketing copy and unused schema. When a live pr
 8. Treat Notes Inbox Status as Tasks Inbox Status. Notes `Status` is document progress.
 9. Guess a custom emoji name for Task `icon`. Use the string recorded in `20-tasks-projects-areas/tasks.md`.
 10. Query Knowledge Base Topics when the owner asked for CS Topics, or the reverse. Both live titles are `Topics`.
+11. Write a relation or rollup whose target data source is absent from `03-identifiers.md` or returns `object_not_found`.
 
 ## Write gate
 
