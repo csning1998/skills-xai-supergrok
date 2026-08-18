@@ -2,13 +2,13 @@
 name: skill-file-notion-resources
 effort: medium
 description: >
-  Create Notion Resources pages from a payload the owner picked.
-  Use when the user asks to file a source into Resources, ingest a
-  YouTube transcript, or runs /skill-file-notion-resources.
-  Default is list-only. Creating a page requires an explicit ask
-  in the current turn.
+    Create Notion Resources pages from a payload the owner picked.
+    Use when the user asks to file a source into Resources, ingest a
+    YouTube transcript, or runs /skill-file-notion-resources.
+    Default is list-only. Creating a page requires an explicit ask
+    in the current turn.
 metadata:
-  short-description: "File picked sources into Notion Resources"
+    short-description: "File picked sources into Notion Resources"
 ---
 
 # File Notion Resources
@@ -44,8 +44,8 @@ Artifact `ResourceFiled`.
 
 ```json
 {
-  "url": "https://app.notion.com/p/...",
-  "title": "YYYYMMDD video title"
+    "url": "https://app.notion.com/p/...",
+    "title": "YYYYMMDD video title"
 }
 ```
 

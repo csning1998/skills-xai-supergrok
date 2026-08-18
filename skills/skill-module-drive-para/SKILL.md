@@ -2,11 +2,11 @@
 name: skill-module-drive-para
 effort: low
 description: >
-  Execute Drive list and Projects SQL from JSON a layer already
-  filled. Use when skill-inspect-google-drive hands off that JSON,
-  or when the user runs /skill-module-drive-para.
+    Execute Drive list and Projects SQL from JSON a layer already
+    filled. Use when skill-inspect-google-drive hands off that JSON,
+    or when the user runs /skill-module-drive-para.
 metadata:
-  short-description: "Execute Drive census from JSON"
+    short-description: "Execute Drive census from JSON"
 ---
 
 # Module Drive PARA
@@ -21,11 +21,11 @@ Load `~/.grok/skills/modules/shared/notion-mcp.md`.
 
 ```json
 {
-  "root_names": ["01-Inbox", "02-Projects"],
-  "projects_collection": "collection://...",
-  "projects_query": "SELECT Name, Status, url FROM \"collection://...\" ORDER BY Status, Name",
-  "create_folder_name": null,
-  "trash_file_id": null
+    "root_names": ["01-Inbox", "02-Projects"],
+    "projects_collection": "collection://...",
+    "projects_query": "SELECT Name, Status, url FROM \"collection://...\" ORDER BY Status, Name",
+    "create_folder_name": null,
+    "trash_file_id": null
 }
 ```
 
@@ -44,16 +44,16 @@ Artifact `DriveCensus`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "folders": [{ "name": "02-Projects", "id": "drive-id" }],
-  "project_rows": [
-    {
-      "Name": "[P] x",
-      "Status": "Live Project",
-      "url": "https://app.notion.com/p/..."
-    }
-  ]
+    "ok": true,
+    "error": null,
+    "folders": [{ "name": "02-Projects", "id": "drive-id" }],
+    "project_rows": [
+        {
+            "Name": "[P] x",
+            "Status": "Live Project",
+            "url": "https://app.notion.com/p/..."
+        }
+    ]
 }
 ```
 

@@ -2,13 +2,13 @@
 name: skill-inspect-second-brain
 effort: low
 description: >
-  Read the owner Second Brain documentation under
-  ~/.grok/docs/second-brain before locating or filling a Notion page
-  in the Failure Managements workspace. Use when the user asks about
-  Second Brain structure, Notion filing, Goal Task Project Area
-  finance notes, or runs /skill-inspect-second-brain.
+    Read the owner Second Brain documentation under
+    ~/.grok/docs/second-brain before locating or filling a Notion page
+    in the Failure Managements workspace. Use when the user asks about
+    Second Brain structure, Notion filing, Goal Task Project Area
+    finance notes, or runs /skill-inspect-second-brain.
 metadata:
-  short-description: "Load Second Brain docs before Notion work"
+    short-description: "Load Second Brain docs before Notion work"
 ---
 
 # Inspect Second Brain

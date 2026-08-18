@@ -2,12 +2,12 @@
 name: skill-youtube-to-resources
 effort: medium
 description: >
-  Sequence yt-dlp, Buzz, and Notion write for watch URLs the owner
-  picked. Use when the user asks to download, transcribe, and file
-  YouTube videos in one pass, or runs /skill-youtube-to-resources.
-  Each write still needs an explicit ask in the current turn.
+    Sequence yt-dlp, Buzz, and Notion write for watch URLs the owner
+    picked. Use when the user asks to download, transcribe, and file
+    YouTube videos in one pass, or runs /skill-youtube-to-resources.
+    Each write still needs an explicit ask in the current turn.
 metadata:
-  short-description: "YouTube to Resources layer"
+    short-description: "YouTube to Resources layer"
 ---
 
 # YouTube to Resources
@@ -31,19 +31,19 @@ Read `~/.grok/skills/modules/shared/write-gate.md`.
 
 ```json
 {
-  "mode": "download",
-  "url": "<watch URL>",
-  "outdir": "~/Videos",
-  "playlist_end": null,
-  "dateafter": null
+    "mode": "download",
+    "url": "<watch URL>",
+    "outdir": "~/Videos",
+    "playlist_end": null,
+    "dateafter": null
 }
 ```
 
-2. Probe Buzz. Stop the file when `cuda_available` is false. Fill Buzz JSON from the language table in `skill-buzz-transcribe` and call `~/.grok/skills/skill-module-buzz-transcribe/SKILL.md`. Keep `transcript_path`.
-3. Call `~/.grok/skills/skill-module-media-tags/SKILL.md` with `{"media_path":"<media_path>"}`. Fill `VideoResourcePayload` from `MediaTags` using the table below.
-4. Locate Resources through `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md` with `{"object":"Resources"}`.
-5. Create `/tmp/skill-youtube-to-resources/<id>/` with mode `0700`. Write each module JSON and the filled `VideoResourcePayload` there. Do not paste a live title or transcript into this skill file. Do not delete the directory after the write.
-6. Lookup then, when the write gate allows it, send `payload_path` to `~/.grok/skills/skill-module-file-notion-resources/SKILL.md`.
+1. Probe Buzz. Stop the file when `cuda_available` is false. Fill Buzz JSON from the language table in `skill-buzz-transcribe` and call `~/.grok/skills/skill-module-buzz-transcribe/SKILL.md`. Keep `transcript_path`.
+2. Call `~/.grok/skills/skill-module-media-tags/SKILL.md` with `{"media_path":"<media_path>"}`. Fill `VideoResourcePayload` from `MediaTags` using the table below.
+3. Locate Resources through `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md` with `{"object":"Resources"}`.
+4. Create `/tmp/skill-youtube-to-resources/<id>/` with mode `0700`. Write each module JSON and the filled `VideoResourcePayload` there. Do not paste a live title or transcript into this skill file. Do not delete the directory after the write.
+5. Lookup then, when the write gate allows it, send `payload_path` to `~/.grok/skills/skill-module-file-notion-resources/SKILL.md`.
 
 | Payload key            | Value                                                                       |
 | ---------------------- | --------------------------------------------------------------------------- |
@@ -65,17 +65,17 @@ Artifact `VideoResourcePayload` plus artifact `ResourceFiled`.
 
 ```json
 {
-  "Title": "YYYYMMDD video title",
-  "Type": "Video",
-  "userDefined:URL": "https://www.youtube.com/watch?v=ID",
-  "Author": "channel",
-  "Publisher": "",
-  "date:Published:start": "YYYY-MM-DD",
-  "Description": "youtube description",
-  "content": "transcript text",
-  "AI Summary": "",
-  "media_path": "<media_path>",
-  "transcript_path": "<transcript_path>"
+    "Title": "YYYYMMDD video title",
+    "Type": "Video",
+    "userDefined:URL": "https://www.youtube.com/watch?v=ID",
+    "Author": "channel",
+    "Publisher": "",
+    "date:Published:start": "YYYY-MM-DD",
+    "Description": "youtube description",
+    "content": "transcript text",
+    "AI Summary": "",
+    "media_path": "<media_path>",
+    "transcript_path": "<transcript_path>"
 }
 ```
 

@@ -2,11 +2,11 @@
 name: skill-module-yt-dlp
 effort: low
 description: >
-  Execute yt-dlp list or download from a JSON object a layer already
-  filled. Use when a skill- hands off that JSON, or when the user
-  runs /skill-module-yt-dlp.
+    Execute yt-dlp list or download from a JSON object a layer already
+    filled. Use when a skill- hands off that JSON, or when the user
+    runs /skill-module-yt-dlp.
 metadata:
-  short-description: "Execute yt-dlp from JSON"
+    short-description: "Execute yt-dlp from JSON"
 ---
 
 # Module yt-dlp
@@ -21,11 +21,11 @@ JSON from the calling layer.
 
 ```json
 {
-  "mode": "list",
-  "url": "https://www.youtube.com/watch?v=ID",
-  "outdir": "~/Videos",
-  "playlist_end": 20,
-  "dateafter": null
+    "mode": "list",
+    "url": "https://www.youtube.com/watch?v=ID",
+    "outdir": "~/Videos",
+    "playlist_end": 20,
+    "dateafter": null
 }
 ```
 
@@ -60,21 +60,21 @@ Artifact `YtDlpResult`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "mode": "download",
-  "media_path": "~/Videos/file.mp4",
-  "watch_url": "https://www.youtube.com/watch?v=ID",
-  "rows": [
-    {
-      "upload_date": "20260814",
-      "title": "title",
-      "uploader": "channel",
-      "id": "ID",
-      "webpage_url": "https://www.youtube.com/watch?v=ID",
-      "duration": 1800
-    }
-  ]
+    "ok": true,
+    "error": null,
+    "mode": "download",
+    "media_path": "~/Videos/file.mp4",
+    "watch_url": "https://www.youtube.com/watch?v=ID",
+    "rows": [
+        {
+            "upload_date": "20260814",
+            "title": "title",
+            "uploader": "channel",
+            "id": "ID",
+            "webpage_url": "https://www.youtube.com/watch?v=ID",
+            "duration": 1800
+        }
+    ]
 }
 ```
 

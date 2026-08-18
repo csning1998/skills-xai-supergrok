@@ -2,13 +2,13 @@
 name: skill-module-file-notion-resources
 effort: low
 description: >
-  Execute Notion lookup, create, or update from a payload_path a
-  layer already filled. Use when a skill- hands off that JSON, or
-  when the user runs /skill-module-file-notion-resources. This is
-  the Notion write adapter. A Notion API change is confined to this
-  file.
+    Execute Notion lookup, create, or update from a payload_path a
+    layer already filled. Use when a skill- hands off that JSON, or
+    when the user runs /skill-module-file-notion-resources. This is
+    the Notion write adapter. A Notion API change is confined to this
+    file.
 metadata:
-  short-description: "Execute Notion write from payload_path"
+    short-description: "Execute Notion write from payload_path"
 ---
 
 # Module Notion write
@@ -23,15 +23,15 @@ Load `~/.grok/skills/modules/shared/notion-mcp.md`.
 
 ```json
 {
-  "op": "create",
-  "data_source_id": "<from locate>",
-  "data_source_url": "<from locate>",
-  "payload_path": "/tmp/skill-youtube-to-resources/<id>/video-resource-payload.json",
-  "page_id": null,
-  "lookup": {
-    "property": "userDefined:URL",
-    "value": "<url from payload>"
-  }
+    "op": "create",
+    "data_source_id": "<from locate>",
+    "data_source_url": "<from locate>",
+    "payload_path": "/tmp/skill-youtube-to-resources/<id>/video-resource-payload.json",
+    "page_id": null,
+    "lookup": {
+        "property": "userDefined:URL",
+        "value": "<url from payload>"
+    }
 }
 ```
 
@@ -52,11 +52,11 @@ Artifact `NotionWriteResult`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "op": "create",
-  "urls": ["https://app.notion.com/p/..."],
-  "blocked_snippet": null
+    "ok": true,
+    "error": null,
+    "op": "create",
+    "urls": ["https://app.notion.com/p/..."],
+    "blocked_snippet": null
 }
 ```
 

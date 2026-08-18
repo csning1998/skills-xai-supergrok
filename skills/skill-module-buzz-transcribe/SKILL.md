@@ -2,11 +2,11 @@
 name: skill-module-buzz-transcribe
 effort: low
 description: >
-  Execute one Buzz Flatpak add or a CUDA probe from a JSON object a
-  layer already filled. Use when a skill- hands off that JSON, or
-  when the user runs /skill-module-buzz-transcribe.
+    Execute one Buzz Flatpak add or a CUDA probe from a JSON object a
+    layer already filled. Use when a skill- hands off that JSON, or
+    when the user runs /skill-module-buzz-transcribe.
 metadata:
-  short-description: "Execute Buzz from JSON"
+    short-description: "Execute Buzz from JSON"
 ---
 
 # Module Buzz transcribe
@@ -21,12 +21,12 @@ JSON from the calling layer.
 
 ```json
 {
-  "op": "add",
-  "media_path": "~/Videos/file.mp4",
-  "model_type": "whisper",
-  "model_size": "medium",
-  "language": "zh",
-  "extract_speech": "no"
+    "op": "add",
+    "media_path": "~/Videos/file.mp4",
+    "model_type": "whisper",
+    "model_size": "medium",
+    "language": "zh",
+    "extract_speech": "no"
 }
 ```
 
@@ -61,13 +61,13 @@ Artifact `BuzzResult`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "op": "add",
-  "cuda_available": true,
-  "device_name": "NVIDIA GeForce RTX 4070",
-  "transcript_path": "~/Videos/[Transcript] file.txt",
-  "exit_code": 0
+    "ok": true,
+    "error": null,
+    "op": "add",
+    "cuda_available": true,
+    "device_name": "NVIDIA GeForce RTX 4070",
+    "transcript_path": "~/Videos/[Transcript] file.txt",
+    "exit_code": 0
 }
 ```
 

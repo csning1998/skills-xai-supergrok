@@ -2,11 +2,11 @@
 name: skill-module-update-antigravity
 effort: low
 description: >
-  Execute Antigravity probe, download, stop, and replace from JSON
-  a layer already filled. Use when skill-update-antigravity hands
-  off that JSON, or when the user runs /skill-module-update-antigravity.
+    Execute Antigravity probe, download, stop, and replace from JSON
+    a layer already filled. Use when skill-update-antigravity hands
+    off that JSON, or when the user runs /skill-module-update-antigravity.
 metadata:
-  short-description: "Execute Antigravity replace from JSON"
+    short-description: "Execute Antigravity replace from JSON"
 ---
 
 # Module update Antigravity
@@ -19,15 +19,15 @@ A layer already chose products, URLs, and install roots.
 
 ```json
 {
-  "op": "replace",
-  "products": ["ide", "hub"],
-  "ide_url": "https://storage.googleapis.com/...",
-  "hub_url": "https://storage.googleapis.com/...",
-  "ide_root": "~/.local/share/antigravity-ide",
-  "hub_root": "~/.local/share/antigravity/Antigravity-x64",
-  "old_ide_version": "1.0.0",
-  "old_hub_version": "2.0.0",
-  "extract_hub_icon": false
+    "op": "replace",
+    "products": ["ide", "hub"],
+    "ide_url": "https://storage.googleapis.com/...",
+    "hub_url": "https://storage.googleapis.com/...",
+    "ide_root": "~/.local/share/antigravity-ide",
+    "hub_root": "~/.local/share/antigravity/Antigravity-x64",
+    "old_ide_version": "1.0.0",
+    "old_hub_version": "2.0.0",
+    "extract_hub_icon": false
 }
 ```
 
@@ -51,11 +51,11 @@ Artifact `AntigravityResult`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "op": "replace",
-  "probe": {},
-  "backups": ["~/.local/share/antigravity-ide.bak.1.0.0"]
+    "ok": true,
+    "error": null,
+    "op": "replace",
+    "probe": {},
+    "backups": ["~/.local/share/antigravity-ide.bak.1.0.0"]
 }
 ```
 

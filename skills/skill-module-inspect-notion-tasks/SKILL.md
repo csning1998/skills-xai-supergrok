@@ -2,11 +2,11 @@
 name: skill-module-inspect-notion-tasks
 effort: low
 description: >
-  Execute Tasks SQL from a JSON query a layer already filled. Use
-  when a skill- hands off that JSON, or when the user runs
-  /skill-module-inspect-notion-tasks.
+    Execute Tasks SQL from a JSON query a layer already filled. Use
+    when a skill- hands off that JSON, or when the user runs
+    /skill-module-inspect-notion-tasks.
 metadata:
-  short-description: "Execute Tasks SQL from JSON"
+    short-description: "Execute Tasks SQL from JSON"
 ---
 
 # Module inspect Notion Tasks
@@ -21,8 +21,8 @@ Load `~/.grok/skills/modules/shared/notion-mcp.md`.
 
 ```json
 {
-  "data_source_url": "collection://316919d4-1936-81e5-b1af-000b95494b22",
-  "query": "SELECT Name, url FROM \"collection://316919d4-1936-81e5-b1af-000b95494b22\" LIMIT 100"
+    "data_source_url": "collection://316919d4-1936-81e5-b1af-000b95494b22",
+    "query": "SELECT Name, url FROM \"collection://316919d4-1936-81e5-b1af-000b95494b22\" LIMIT 100"
 }
 ```
 
@@ -39,15 +39,15 @@ Artifact `NotionTaskRows`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "rows": [
-    {
-      "Name": "title !12",
-      "url": "https://app.notion.com/p/...",
-      "iid_tokens": ["12"]
-    }
-  ]
+    "ok": true,
+    "error": null,
+    "rows": [
+        {
+            "Name": "title !12",
+            "url": "https://app.notion.com/p/...",
+            "iid_tokens": ["12"]
+        }
+    ]
 }
 ```
 

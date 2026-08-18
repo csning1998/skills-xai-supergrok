@@ -2,11 +2,11 @@
 name: skill-module-media-tags
 effort: low
 description: >
-  Read ffprobe format tags from a JSON media_path and return raw
-  keys as JSON. Use when a layer needs sibling tags, or when the
-  user runs /skill-module-media-tags.
+    Read ffprobe format tags from a JSON media_path and return raw
+    keys as JSON. Use when a layer needs sibling tags, or when the
+    user runs /skill-module-media-tags.
 metadata:
-  short-description: "Read ffprobe tags as JSON"
+    short-description: "Read ffprobe tags as JSON"
 ---
 
 # Module media tags
@@ -19,7 +19,7 @@ A layer already has a local media path and needs raw tags.
 
 ```json
 {
-  "media_path": "~/Videos/file.mp4"
+    "media_path": "~/Videos/file.mp4"
 }
 ```
 
@@ -39,15 +39,15 @@ Artifact `MediaTags`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "media_path": "~/Videos/file.mp4",
-  "comment": "https://www.youtube.com/watch?v=ID",
-  "title": "video title",
-  "artist": "channel name",
-  "date": "2026-08-14",
-  "description": "youtube description",
-  "synopsis": null
+    "ok": true,
+    "error": null,
+    "media_path": "~/Videos/file.mp4",
+    "comment": "https://www.youtube.com/watch?v=ID",
+    "title": "video title",
+    "artist": "channel name",
+    "date": "2026-08-14",
+    "description": "youtube description",
+    "synopsis": null
 }
 ```
 

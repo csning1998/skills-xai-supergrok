@@ -2,13 +2,13 @@
 name: skill-inspect-notion-tasks
 effort: low
 description: >
-  Inspect the Failure Managements Notion Tasks database: workspace
-  identity, schema, and SQL queries over existing rows. Use when the
-  user asks to inspect, query, or look up Notion Tasks, or runs
-  /skill-inspect-notion-tasks. Read-only. The write layer is
-  /skill-sync-gitlab-mrs-to-notion.
+    Inspect the Failure Managements Notion Tasks database: workspace
+    identity, schema, and SQL queries over existing rows. Use when the
+    user asks to inspect, query, or look up Notion Tasks, or runs
+    /skill-inspect-notion-tasks. Read-only. The write layer is
+    /skill-sync-gitlab-mrs-to-notion.
 metadata:
-  short-description: "Query the Notion Tasks database"
+    short-description: "Query the Notion Tasks database"
 ---
 
 # Inspect Notion Tasks

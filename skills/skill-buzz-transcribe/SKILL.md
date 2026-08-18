@@ -2,13 +2,13 @@
 name: skill-buzz-transcribe
 effort: medium
 description: >
-  Transcribe local audio or video files with the Buzz Flatpak CLI
-  and write a .txt beside each input. Use when the user asks to
-  transcribe, run Buzz CLI, or runs /skill-buzz-transcribe.
-  Default is list-only. Transcription requires an explicit ask
-  in the current turn.
+    Transcribe local audio or video files with the Buzz Flatpak CLI
+    and write a .txt beside each input. Use when the user asks to
+    transcribe, run Buzz CLI, or runs /skill-buzz-transcribe.
+    Default is list-only. Transcription requires an explicit ask
+    in the current turn.
 metadata:
-  short-description: "Transcribe picked local media with Buzz"
+    short-description: "Transcribe picked local media with Buzz"
 ---
 
 # Buzz transcribe
@@ -42,12 +42,12 @@ Read `~/.grok/skills/modules/shared/write-gate.md`.
 
 ```json
 {
-  "op": "add",
-  "media_path": "<WatchMedia.media_path>",
-  "model_type": "whisper",
-  "model_size": "medium",
-  "language": "zh",
-  "extract_speech": "no"
+    "op": "add",
+    "media_path": "<WatchMedia.media_path>",
+    "model_type": "whisper",
+    "model_size": "medium",
+    "language": "zh",
+    "extract_speech": "no"
 }
 ```
 
@@ -59,10 +59,10 @@ Artifact `TranscriptDone`.
 
 ```json
 {
-  "media_path": "~/Videos/file.mp4",
-  "watch_url": "https://www.youtube.com/watch?v=ID",
-  "transcript_path": "~/Videos/[Transcript] file.txt",
-  "exit_code": 0
+    "media_path": "~/Videos/file.mp4",
+    "watch_url": "https://www.youtube.com/watch?v=ID",
+    "transcript_path": "~/Videos/[Transcript] file.txt",
+    "exit_code": 0
 }
 ```
 

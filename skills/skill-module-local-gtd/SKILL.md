@@ -2,11 +2,11 @@
 name: skill-module-local-gtd
 effort: low
 description: >
-  Execute mkdir, rename, and mv from JSON paths a layer already
-  filled. Use when skill-inspect-google-drive hands off that JSON,
-  or when the user runs /skill-module-local-gtd.
+    Execute mkdir, rename, and mv from JSON paths a layer already
+    filled. Use when skill-inspect-google-drive hands off that JSON,
+    or when the user runs /skill-module-local-gtd.
 metadata:
-  short-description: "Execute local mkdir and mv from JSON"
+    short-description: "Execute local mkdir and mv from JSON"
 ---
 
 # Module local GTD
@@ -19,14 +19,14 @@ A layer already chose every destination path.
 
 ```json
 {
-  "mkdir_paths": ["~/Documents/[P] x"],
-  "rename": null,
-  "moves": [
-    {
-      "from": "~/Downloads/a.pdf",
-      "to": "~/Documents/[P] x/a.pdf"
-    }
-  ]
+    "mkdir_paths": ["~/Documents/[P] x"],
+    "rename": null,
+    "moves": [
+        {
+            "from": "~/Downloads/a.pdf",
+            "to": "~/Documents/[P] x/a.pdf"
+        }
+    ]
 }
 ```
 
@@ -45,10 +45,10 @@ Artifact `LocalGtdResult`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "created": ["~/Documents/[P] x"],
-  "moved": ["~/Documents/[P] x/a.pdf"]
+    "ok": true,
+    "error": null,
+    "created": ["~/Documents/[P] x"],
+    "moved": ["~/Documents/[P] x/a.pdf"]
 }
 ```
 

@@ -2,11 +2,11 @@
 name: skill-module-inspect-second-brain
 effort: low
 description: >
-  Read Second Brain locate files for a JSON object name a layer
-  already filled. Use when a skill- needs identifiers, or when the
-  user runs /skill-module-inspect-second-brain.
+    Read Second Brain locate files for a JSON object name a layer
+    already filled. Use when a skill- needs identifiers, or when the
+    user runs /skill-module-inspect-second-brain.
 metadata:
-  short-description: "Read Second Brain from JSON object"
+    short-description: "Read Second Brain from JSON object"
 ---
 
 # Module inspect Second Brain
@@ -19,7 +19,7 @@ A layer already named the Notion entity to locate.
 
 ```json
 {
-  "object": "Resources"
+    "object": "Resources"
 }
 ```
 
@@ -40,12 +40,12 @@ Artifact `SecondBrainLocate`.
 
 ```json
 {
-  "ok": true,
-  "error": null,
-  "object": "Resources",
-  "collection": "collection://316919d4-1936-8163-bfbf-000bb3d012ce",
-  "data_source_id": "316919d4-1936-8163-bfbf-000bb3d012ce",
-  "entity_path": "~/.grok/docs/second-brain/60-knowledge/resources.md"
+    "ok": true,
+    "error": null,
+    "object": "Resources",
+    "collection": "collection://316919d4-1936-8163-bfbf-000bb3d012ce",
+    "data_source_id": "316919d4-1936-8163-bfbf-000bb3d012ce",
+    "entity_path": "~/.grok/docs/second-brain/60-knowledge/resources.md"
 }
 ```
 

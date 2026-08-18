@@ -9,6 +9,8 @@
 !/README-Repository.md
 !/.gitlab/
 !/.gitlab/**
+!/.vscode/
+!/.vscode/**
 
 # User skills consumed by Grok.
 !/skills/

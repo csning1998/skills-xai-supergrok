@@ -2,13 +2,13 @@
 name: skill-inspect-gitlab-mrs
 effort: low
 description: >
-  Enumerate GitLab merge requests with glab and return a stable field
-  contract (iid, title, web_url, merged_at, description). Use when the
-  user asks to inspect, list, or pull GitLab MRs, or runs
-  /skill-inspect-gitlab-mrs. Read-only. The write layer is
-  /skill-sync-gitlab-mrs-to-notion.
+    Enumerate GitLab merge requests with glab and return a stable field
+    contract (iid, title, web_url, merged_at, description). Use when the
+    user asks to inspect, list, or pull GitLab MRs, or runs
+    /skill-inspect-gitlab-mrs. Read-only. The write layer is
+    /skill-sync-gitlab-mrs-to-notion.
 metadata:
-  short-description: "List GitLab MRs via glab"
+    short-description: "List GitLab MRs via glab"
 ---
 
 # Inspect GitLab MRs
@@ -30,15 +30,15 @@ The owner asked to list or inspect merge requests.
 
 ```json
 {
-  "target_type": "repo",
-  "target": "owner/repo",
-  "state": "merged"
+    "target_type": "repo",
+    "target": "owner/repo",
+    "state": "merged"
 }
 ```
 
 `state` is `merged` unless the owner named another state.
 
-3. When the owner asked for descriptions, fill `summary_paragraph` from each `description`. Take the first paragraph after `## Summary` or `## Description`. If neither heading exists, use the first non-heading paragraph. Normalize `\r\n` to `\n`. Reject a bare heading such as `## Changes`.
+1. When the owner asked for descriptions, fill `summary_paragraph` from each `description`. Take the first paragraph after `## Summary` or `## Description`. If neither heading exists, use the first non-heading paragraph. Normalize `\r\n` to `\n`. Reject a bare heading such as `## Changes`.
 
 ## Output
 

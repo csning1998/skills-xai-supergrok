@@ -2,16 +2,16 @@
 name: skill-inspect-google-drive
 effort: medium
 description: >
-  Census the owner Google Drive PARA tree via MCP, reconcile it with
-  Notion Projects and local ~/Downloads (Inbox) plus ~/Documents
-  (Projects), and file local files into folders named after Notion
-  Project Name. Use when the user asks about Google Drive structure,
-  GTD filing, Downloads or Documents classification, creating local
-  project folders from Drive, or runs /skill-inspect-google-drive.
-  Drive MCP cannot move files. Local mkdir and mv require an explicit
-  ask in the current turn.
+    Census the owner Google Drive PARA tree via MCP, reconcile it with
+    Notion Projects and local ~/Downloads (Inbox) plus ~/Documents
+    (Projects), and file local files into folders named after Notion
+    Project Name. Use when the user asks about Google Drive structure,
+    GTD filing, Downloads or Documents classification, creating local
+    project folders from Drive, or runs /skill-inspect-google-drive.
+    Drive MCP cannot move files. Local mkdir and mv require an explicit
+    ask in the current turn.
 metadata:
-  short-description: "Census Drive PARA and file local GTD"
+    short-description: "Census Drive PARA and file local GTD"
 ---
 
 # Inspect Google Drive
@@ -34,21 +34,21 @@ Read `~/.grok/docs/second-brain/20-tasks-projects-areas/projects.md`.
 
 1. Fill Drive census JSON and call `~/.grok/skills/skill-module-drive-para/SKILL.md`.
 
-```json
-{
-  "root_names": [
-    "01-Inbox",
-    "02-Projects",
-    "03-Resources",
-    "04-Archived Projects and Resources",
-    "05-Archived Multimedias"
-  ],
-  "projects_collection": "<from locate>",
-  "projects_query": "SELECT Name, Status, url FROM \"<collection>\" ORDER BY Status, Name",
-  "create_folder_name": null,
-  "trash_file_id": null
-}
-```
+    ```json
+    {
+        "root_names": [
+            "01-Inbox",
+            "02-Projects",
+            "03-Resources",
+            "04-Archived Projects and Resources",
+            "05-Archived Multimedias"
+        ],
+        "projects_collection": "<from locate>",
+        "projects_query": "SELECT Name, Status, url FROM \"<collection>\" ORDER BY Status, Name",
+        "create_folder_name": null,
+        "trash_file_id": null
+    }
+    ```
 
 2. List `~/Downloads` and `~/Documents` at depth 1.
 3. Report a three-way table: Notion `Name`, Status, local path, Drive `02` folder.
@@ -65,16 +65,16 @@ Artifact `WorkspaceCensus`.
 
 ```json
 {
-  "rows": [
-    {
-      "name": "[P] x",
-      "status": "Live Project",
-      "local_path": "~/Documents/[P] x",
-      "drive_folder": "present"
-    }
-  ],
-  "moved": [],
-  "left_in_inbox": []
+    "rows": [
+        {
+            "name": "[P] x",
+            "status": "Live Project",
+            "local_path": "~/Documents/[P] x",
+            "drive_folder": "present"
+        }
+    ],
+    "moved": [],
+    "left_in_inbox": []
 }
 ```
 

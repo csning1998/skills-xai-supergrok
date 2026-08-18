@@ -2,12 +2,12 @@
 name: skill-sync-gitlab-mrs-to-notion
 effort: medium
 description: >
-  Orchestrate GitLab MR records and Notion Tasks queries, then create
-  Notion Task pages for merged GitLab MRs that have no matching row.
-  Use when the user asks to check, register, or sync GitLab MRs
-  against Notion Tasks, or runs /skill-sync-gitlab-mrs-to-notion.
+    Orchestrate GitLab MR records and Notion Tasks queries, then create
+    Notion Task pages for merged GitLab MRs that have no matching row.
+    Use when the user asks to check, register, or sync GitLab MRs
+    against Notion Tasks, or runs /skill-sync-gitlab-mrs-to-notion.
 metadata:
-  short-description: "Sync merged GitLab MRs into Notion Tasks"
+    short-description: "Sync merged GitLab MRs into Notion Tasks"
 ---
 
 # Sync GitLab MRs to Notion
@@ -42,8 +42,8 @@ Artifact `TaskFiled`.
 
 ```json
 {
-  "candidates": [{ "iid": 12, "title": "..." }],
-  "created": [{ "url": "https://app.notion.com/p/...", "iid": 12 }]
+    "candidates": [{ "iid": 12, "title": "..." }],
+    "created": [{ "url": "https://app.notion.com/p/...", "iid": 12 }]
 }
 ```
 
