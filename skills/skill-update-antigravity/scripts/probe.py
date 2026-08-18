@@ -69,7 +69,9 @@ def resolve_official() -> dict[str, dict[str, str]]:
         if "IDE.tar.gz" in url:
             ide_url = url
     if not hub_url or not ide_url:
-        raise SystemExit("official Linux x64 tarball URLs were not found on the download page")
+        raise SystemExit(
+            "official Linux x64 tarball URLs were not found on the download page"
+        )
     return {
         "hub": {"version": version_from_url(hub_url), "url": hub_url},
         "ide": {"version": version_from_url(ide_url), "url": ide_url},

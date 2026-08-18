@@ -3,6 +3,7 @@
 
 /*
 !/.gitignore
+!/.gitattributes
 !/.gitlab-ci.yml
 !/.mdlrc
 !/.yamllint.yml
@@ -19,6 +20,11 @@
 # Owner subagent roles (effort bands). Bundled roles stay untracked.
 !/roles/
 !/roles/**
+!/rules/
+!/rules/**
+!/hooks/
+!/hooks/**
+hooks/state
 
 # User Second Brain documentation and markdown linters.
 !/docs/
@@ -47,3 +53,5 @@
 **/*.tfplan
 **/crash.log
 **/crash.*.log
+
+__pycache__/

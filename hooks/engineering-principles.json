@@ -1,0 +1,50 @@
+{
+    "hooks": {
+        "SessionStart": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "bin/engineering-principles.py",
+                        "timeout": 15
+                    }
+                ]
+            }
+        ],
+        "UserPromptSubmit": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "bin/engineering-principles.py",
+                        "timeout": 15
+                    }
+                ]
+            }
+        ],
+        "PreToolUse": [
+            {
+                "matcher": "Write|Edit|Bash|Read|search_replace|read_file|run_terminal_command|MultiEdit",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "bin/engineering-principles.py",
+                        "timeout": 15
+                    }
+                ]
+            }
+        ],
+        "PostToolUse": [
+            {
+                "matcher": "Read|read_file",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "bin/engineering-principles.py",
+                        "timeout": 15
+                    }
+                ]
+            }
+        ]
+    }
+}

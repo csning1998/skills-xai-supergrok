@@ -1,0 +1,5 @@
+# Include Markdown in GitLab repository language statistics.
+# GitLab detects languages from the default branch and excludes most markup
+# unless linguist-detectable is set. See:
+# https://docs.gitlab.com/user/project/repository/#add-repository-languages
+*.md linguist-detectable=true linguist-documentation=false

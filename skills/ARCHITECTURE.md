@@ -65,6 +65,14 @@ Task fill lives in `skill-sync-gitlab-mrs-to-notion` and `tasks.md`.
 - Modules: `skill-module-update-antigravity`
 - Artifacts: `AntigravityResult`
 
+### Item F. Architecture documents
+
+- Layers: `skill-inspect-architecture-docs`, `skill-update-architecture-docs`
+- Modules: `skill-module-inspect-gitlab-mrs`
+- Artifacts: `ArchitectureConflictReport`, `ArchitectureDocsUpdated`
+
+Inspect is read-only. Update writes the planning tree after an ask. A merged merge request that the owner asked to archive is handed to `skill-sync-gitlab-mrs-to-notion`. Task fill stays in that layer and `tasks.md`. These layers do not own Terraform DAG, security, test authoring, idempotency, or module-shape review.
+
 ## Section 4. Shared kernel
 
 | File                           | Fact                                              |
