@@ -1,0 +1,7 @@
+{
+    "extraPaths": [
+        "hooks",
+        "skills/skill-module-gitlab-mr-labels/scripts",
+        "skills/skill-update-antigravity/scripts"
+    ]
+}

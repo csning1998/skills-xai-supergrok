@@ -10,7 +10,7 @@
 
 ## Section 2. Shared Modules Stay Generic
 
-共用模組（`terraform/modules/`、`ansible/roles/utils_*`）只宣告資源結構。環境別名與產品名由呼叫端傳入。未在提示寫「允許改通用模組」不得改共用模組。
+共用模組（`terraform/modules/`、`ansible/roles/utils_*`）只宣告資源結構。環境別名與產品名由呼叫端傳入。未在提示寫 `leave generic module` 不得改共用模組。
 
 為單一呼叫端改共用模組，會把業務判斷擴散到所有呼叫端。
 
@@ -38,4 +38,4 @@
 
 以記憶陳述版本會寫出已失效的旗標與預設值。
 
-Hook 只擋 Section 1 到 4 中可靜態判斷的動作。改共用模組請在提示寫「允許改通用模組」。關閉 hook 請設 `ENGINEERING_PRINCIPLES_HOOK=0`。
+Hook 只擋 Section 1 到 4 中可靜態判斷的動作。改共用模組請在提示寫 `leave generic module`。關閉 hook 請設 `ENGINEERING_PRINCIPLES_HOOK=0`。

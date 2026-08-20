@@ -142,7 +142,7 @@ The complete contract is `99-hook-contract.md` in this directory. The summary be
 
 When the current session will mutate `terraform/`, `ansible/`, `packer/`, or `planning/` under a repository whose name appears in `planning/architecture_<repo>*.md`, the executing Agent MUST first open `planning/decisions.md` and at least one matching `planning/architecture*.md` with the read-file tool. After those reads, the executing Agent MUST write the move check, the name check, the DAG check, and the in-scope check. A repository whose name does not appear in those architecture file names is outside this gate.
 
-A mutation of `terraform/modules/` or `ansible/roles/utils_*` requires the owner phrase `允許改通用模組` in a prompt of the current session. After that phrase, the PreToolUse hook still denies a new environment alias, a tautological `vault = vault` map, and a product name inside the generic module.
+A mutation of `terraform/modules/` or `ansible/roles/utils_*` requires the owner phrase `leave generic module` in a prompt of the current session. After that phrase, the PreToolUse hook still denies a new environment alias, a tautological `vault = vault` map, and a product name inside the generic module.
 
 The owner disables the hook by setting `ENGINEERING_PRINCIPLES_HOOK=0`.
 

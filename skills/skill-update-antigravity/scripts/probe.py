@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-# Resolves official Linux tarball URLs and reports installed product versions.
-"""Print official Antigravity download URLs and local install versions as JSON."""
+"""Print official Antigravity tarball URLs and local versions as JSON."""
 
 from __future__ import annotations
 
@@ -12,6 +11,7 @@ import struct
 import sys
 import urllib.request
 from pathlib import Path
+
 
 DOWNLOAD_PAGE = "https://antigravity.google/download"
 HOME = Path.home()
@@ -29,6 +29,7 @@ IDE_CANDIDATES = [
 
 
 def fetch(url: str) -> bytes:
+    """Download URL bytes, decoding gzip when the server sends it."""
     req = urllib.request.Request(
         url,
         headers={
@@ -45,6 +46,7 @@ def fetch(url: str) -> bytes:
 
 
 def version_from_url(url: str) -> str:
+    """Parse a version token from a known official tarball URL."""
     for pattern in (
         r"/antigravity-hub/([^/]+)/",
         r"/stable/([^/]+)/",
@@ -57,6 +59,7 @@ def version_from_url(url: str) -> str:
 
 
 def resolve_official() -> dict[str, dict[str, str]]:
+    """Read official Linux x64 hub and IDE tarball URLs."""
     html = fetch(DOWNLOAD_PAGE).decode("utf-8", errors="replace")
     urls = re.findall(r"https://[^\s\"'<>]+", html)
     hub_url = ""
@@ -70,7 +73,8 @@ def resolve_official() -> dict[str, dict[str, str]]:
             ide_url = url
     if not hub_url or not ide_url:
         raise SystemExit(
-            "official Linux x64 tarball URLs were not found on the download page"
+            "official Linux x64 tarball URLs were not found on "
+            "the download page"
         )
     return {
         "hub": {"version": version_from_url(hub_url), "url": hub_url},
@@ -79,6 +83,7 @@ def resolve_official() -> dict[str, dict[str, str]]:
 
 
 def read_asar_package_version(asar_path: Path) -> str | None:
+    """Read package.json version from an Electron asar archive."""
     with asar_path.open("rb") as handle:
         handle.read(4)
         header_size = struct.unpack("<I", handle.read(4))[0]
@@ -94,6 +99,7 @@ def read_asar_package_version(asar_path: Path) -> str | None:
 
 
 def extract_asar_icon(asar_path: Path, dest: Path) -> bool:
+    """Write icon.png from an asar archive to dest. Return False if absent."""
     with asar_path.open("rb") as handle:
         handle.read(4)
         header_size = struct.unpack("<I", handle.read(4))[0]
@@ -109,6 +115,7 @@ def extract_asar_icon(asar_path: Path, dest: Path) -> bool:
 
 
 def read_ide_version(root: Path) -> str | None:
+    """Return ideVersion from a local Antigravity IDE install root."""
     product = root / "resources/app/product.json"
     if not product.is_file():
         return None
@@ -117,6 +124,7 @@ def read_ide_version(root: Path) -> str | None:
 
 
 def read_hub_version(root: Path) -> str | None:
+    """Return the hub version from asar or package.json."""
     asar = root / "resources/app.asar"
     if asar.is_file():
         return read_asar_package_version(asar)
@@ -127,6 +135,7 @@ def read_hub_version(root: Path) -> str | None:
 
 
 def existing_roots(candidates: list[Path], marker: str) -> list[Path]:
+    """Return unique existing install roots that contain marker."""
     found: list[Path] = []
     seen: set[Path] = set()
     for candidate in candidates:
@@ -143,9 +152,13 @@ def existing_roots(candidates: list[Path], marker: str) -> list[Path]:
 
 
 def main() -> int:
+    """Print probe JSON, or extract a hub icon when asked."""
     if len(sys.argv) > 1 and sys.argv[1] == "extract-hub-icon":
         if len(sys.argv) != 4:
-            print("usage: probe.py extract-hub-icon <asar> <dest.png>", file=sys.stderr)
+            print(
+                "usage: probe.py extract-hub-icon <asar> <dest.png>",
+                file=sys.stderr,
+            )
             return 2
         ok = extract_asar_icon(Path(sys.argv[2]), Path(sys.argv[3]))
         return 0 if ok else 1
@@ -153,10 +166,14 @@ def main() -> int:
     official = resolve_official()
     ide_installs = []
     for root in existing_roots(IDE_CANDIDATES, "antigravity-ide"):
-        ide_installs.append({"path": str(root), "version": read_ide_version(root)})
+        ide_installs.append(
+            {"path": str(root), "version": read_ide_version(root)}
+        )
     hub_installs = []
     for root in existing_roots(HUB_CANDIDATES, "antigravity"):
-        hub_installs.append({"path": str(root), "version": read_hub_version(root)})
+        hub_installs.append(
+            {"path": str(root), "version": read_hub_version(root)}
+        )
     payload = {
         "download_page": DOWNLOAD_PAGE,
         "official": official,

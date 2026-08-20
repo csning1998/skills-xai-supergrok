@@ -1,4 +1,19 @@
 {
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "ruff.interpreter": [
+        "${workspaceFolder}/.venv/bin/python"
+    ],
+    "ruff.nativeServer": "on",
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.tabSize": 4,
+        "editor.indentSize": 4,
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports.ruff": "explicit",
+            "source.fixAll.ruff": "explicit"
+        }
+    },
     "files.readonlyInclude": {
         "config.toml": true
     },

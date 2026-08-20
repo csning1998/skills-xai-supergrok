@@ -16,7 +16,7 @@ The PreToolUse hook inspects the tool name, the target path, and the text about 
 
 ## Section 2. Generic Module Authorization
 
-1. **Authorization Phrase**. A mutation of `terraform/modules/` or `ansible/roles/utils_*` requires one of the following phrases in an owner prompt of the current session. The phrases are `允許改通用模組`, `授權改通用模組`, `你可以改這個通用`, `leave generic module`, and `authorized to edit generic`. The UserPromptSubmit hook records that phrase. A request such as `fix that module` does not record leave.
+1. **Authorization Phrase**. A mutation of `terraform/modules/` or `ansible/roles/utils_*` requires one of the following phrases in an owner prompt of the current session. The phrases are `leave generic module` and `authorized to edit generic`. A guest SQL command requires `allow guest sql`. The UserPromptSubmit hook records that phrase. A request such as `fix that module` does not record leave.
 
 2. **Still Prohibited After Authorization**. After leave is recorded, the PreToolUse hook still denies a newly added environment alias, a newly added `vault.production` address, a newly added `vault = vault` map, and a newly added product token in a variable name, resource name, tag key, or output key.
 

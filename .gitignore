@@ -5,6 +5,11 @@
 !/.gitignore
 !/.gitattributes
 !/.gitlab-ci.yml
+!/pyproject.toml
+!/pyrightconfig.json
+!/uv.lock
+!/tests/
+!/tests/**
 !/.mdlrc
 !/.yamllint.yml
 !/README-Repository.md
@@ -55,3 +60,4 @@ hooks/state
 **/crash.*.log
 
 __pycache__/
+*.egg-info/
