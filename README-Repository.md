@@ -81,6 +81,7 @@ This repository's working tree maps directly to `~/.grok`. Grok installation pop
     ```bash
     git checkout -B main origin/main
     git status -sb
+    git config core.hooksPath .githooks
     ```
 
     Verify tracking state indicates `main...origin/main`. Confirm presence of `skills/`, `docs/second-brain/`, `memory/`, and `terraform/`. If untracked file conflicts persist, relocate conflicting paths and re-execute checkout.
@@ -89,6 +90,7 @@ This repository's working tree maps directly to `~/.grok`. Grok installation pop
     1. Execute `grok` to verify authentication validity.
     2. Terraform operations targeting GitLab projects require local credentials: `~/.vault-token`, `~/.terraform.d/credentials.tfrc.json`, and `~/GitLab/meta-platform/vault/tls/ca.pem`. State is hosted on the GitLab HTTP backend (Project ID: `85419450`).
     3. Do not transfer `auth.json` across hosts.
+    4. `git rev-parse --git-path hooks` MUST print `.githooks`. Tracked hooks are `pre-commit` (gitleaks) and `commit-msg` (commitlint). Both run via `podman run`.
 
 6. **Prohibited Operations**
     1. Executing `git clone ... ~/.grok` directly against populated `~/.grok`.

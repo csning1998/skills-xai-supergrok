@@ -65,7 +65,7 @@ Artifact `BuzzResult`.
     "error": null,
     "op": "add",
     "cuda_available": true,
-    "device_name": "NVIDIA GeForce RTX 4070",
+    "device_name": "<device_name>",
     "transcript_path": "~/Videos/[Transcript] file.txt",
     "exit_code": 0
 }

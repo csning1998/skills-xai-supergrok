@@ -41,7 +41,7 @@ Read `~/.grok/skills/modules/shared/write-gate.md`.
 
 1. Probe Buzz. Stop the file when `cuda_available` is false. Fill Buzz JSON from the language table in `skill-buzz-transcribe` and call `~/.grok/skills/skill-module-buzz-transcribe/SKILL.md`. Keep `transcript_path`.
 2. Call `~/.grok/skills/skill-module-media-tags/SKILL.md` with `{"media_path":"<media_path>"}`. Fill `VideoResourcePayload` from `MediaTags` using the table below.
-3. Locate Resources through `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md` with `{"object":"Resources"}`.
+3. Locate Resources through `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md` with `{"object":"Resources","docs_root":"<home>/.grok/docs/second-brain"}`.
 4. Create `/tmp/skill-youtube-to-resources/<id>/` with mode `0700`. Write each module JSON and the filled `VideoResourcePayload` there. Do not paste a live title or transcript into this skill file. Do not delete the directory after the write.
 5. Lookup then, when the write gate allows it, send `payload_path` to `~/.grok/skills/skill-module-file-notion-resources/SKILL.md`.
 

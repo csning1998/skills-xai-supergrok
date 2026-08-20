@@ -2,7 +2,7 @@
 
 Read `~/.grok/docs/skill-system/README.md` before editing a skill. Upstream source and the reference list are `~/.grok/docs/skill-system/reference/NOTICE.md`.
 
-A `skill-*` file is a layer. It fills JSON and owns field names. A `skill-module-*` file receives JSON, maps it onto one tool, and returns JSON. Second Brain is the ubiquitous language for Notion entities.
+A `skill-*` file is a layer. It fills JSON and owns field names. A `skill-module-*` file is stateless. It receives JSON, maps that JSON onto one tool, and returns JSON. It MUST NOT bake collection IDs, group paths, mapping tables, or owner home paths. Second Brain is the ubiquitous language for Notion entities. Identifiers live in `docs/second-brain/03-identifiers.md` and are copied by the layer.
 
 ## Section 1. Contract
 
@@ -25,7 +25,7 @@ If the Notion API changes, only `skill-module-file-notion-resources` changes. yt
 | Kind   | Prefix          | Role                                                 |
 | ------ | --------------- | ---------------------------------------------------- |
 | Layer  | `skill-`        | Fill JSON. Sequence modules. Own destination fields. |
-| Module | `skill-module-` | Execute one tool. Return JSON.                       |
+| Module | `skill-module-` | Stateless. Execute one tool. Return JSON.            |
 
 Frontmatter `effort` on each `SKILL.md` is the spawn budget. Roles live in `~/.grok/roles/`. `low` maps to `exec-low`. `medium` maps to `exec-medium`. Do not spawn bare `general-purpose` for those two values.
 

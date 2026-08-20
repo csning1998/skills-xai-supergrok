@@ -36,7 +36,29 @@
         ],
         "PostToolUse": [
             {
-                "matcher": "Read|read_file",
+                "matcher": "Read|read_file|Write|Edit|Bash|search_replace|run_terminal_command|MultiEdit",
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "bin/engineering-principles.py",
+                        "timeout": 15
+                    }
+                ]
+            }
+        ],
+        "Stop": [
+            {
+                "hooks": [
+                    {
+                        "type": "command",
+                        "command": "bin/engineering-principles.py",
+                        "timeout": 15
+                    }
+                ]
+            }
+        ],
+        "SubagentStop": [
+            {
                 "hooks": [
                     {
                         "type": "command",

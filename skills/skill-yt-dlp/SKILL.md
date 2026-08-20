@@ -41,6 +41,7 @@ User config at `~/.config/yt-dlp/config` also sets `-P` to `YouTube_cached`. Thi
 | `url`          | The owner named watch, id, or channel URL                                                               |
 | `playlist_end` | `20` for a channel or `/videos` list. `null` for a single watch URL                                     |
 | `dateafter`    | `now-14days` when the owner asked for recent uploads only, otherwise `null`                             |
+| `archive_path` | `~/.config/yt-dlp/archive.txt` on download. `null` on list                                              |
 
 Do not pass a channel URL when `mode` is `download`.
 

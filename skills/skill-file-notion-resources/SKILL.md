@@ -25,7 +25,7 @@ The owner asked to file a source and a `payload_path` is already in this turn.
 
 Read `~/.grok/skills/modules/shared/write-gate.md`.
 
-Call `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md` with `{"object":"Resources"}`. Take `data_source_id` from that JSON. Do not copy the id into this file.
+Call `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md` with `{"object":"Resources","docs_root":"<home>/.grok/docs/second-brain"}`. Take `data_source_id` from that JSON. Do not copy the id into this file.
 
 Do not recompute keys that `payload_path` already holds.
 

@@ -25,7 +25,7 @@ The owner asked about Second Brain structure, or another layer needs identifiers
 
 ## Process
 
-1. Fill `{"object":"<entity>"}`.
+1. Fill `{"object":"<entity>","docs_root":"<home>/.grok/docs/second-brain"}`.
 2. Call `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md`.
 3. Report `SecondBrainLocate`.
 

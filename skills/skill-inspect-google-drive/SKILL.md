@@ -25,7 +25,7 @@ The owner asked about Drive PARA, Downloads, Documents, or local classify.
 ## Input Requirements
 
 - Required: the ask in this turn.
-- Locate Projects through `skill-module-inspect-second-brain` with `{"object":"Projects"}`.
+- Locate Projects through `skill-module-inspect-second-brain` with `{"object":"Projects","docs_root":"<home>/.grok/docs/second-brain"}`.
 
 Read `~/.grok/skills/modules/shared/write-gate.md`.
 Read `~/.grok/docs/second-brain/20-tasks-projects-areas/projects.md`.

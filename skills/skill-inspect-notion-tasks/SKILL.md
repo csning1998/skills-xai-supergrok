@@ -23,7 +23,7 @@ The owner asked to inspect or look up Tasks.
 
 - Required: none beyond the ask. Optional filter from the owner.
 
-Call `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md` with `{"object":"Tasks"}` first.
+Call `~/.grok/skills/skill-module-inspect-second-brain/SKILL.md` with `{"object":"Tasks","docs_root":"<home>/.grok/docs/second-brain"}` first.
 
 ## Process
 

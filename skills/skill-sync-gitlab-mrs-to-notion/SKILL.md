@@ -28,7 +28,7 @@ Read `~/.grok/docs/second-brain/20-tasks-projects-areas/tasks.md` for the match 
 
 ## Process
 
-1. Locate Tasks: `{"object":"Tasks"}` through `skill-module-inspect-second-brain`.
+1. Locate Tasks: `{"object":"Tasks","docs_root":"<home>/.grok/docs/second-brain"}` through `skill-module-inspect-second-brain`.
 2. Fill GitLab JSON and call `skill-module-inspect-gitlab-mrs`. Keep `GitlabMrList`.
 3. Fill Tasks SQL and call `skill-module-inspect-notion-tasks`. Keep `NotionTaskRows`.
 4. If the owner only asked to check or compare, stop after the candidate list.

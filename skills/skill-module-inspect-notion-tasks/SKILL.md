@@ -21,10 +21,12 @@ Load `~/.grok/skills/modules/shared/notion-mcp.md`.
 
 ```json
 {
-    "data_source_url": "collection://316919d4-1936-81e5-b1af-000b95494b22",
-    "query": "SELECT Name, url FROM \"collection://316919d4-1936-81e5-b1af-000b95494b22\" LIMIT 100"
+    "data_source_url": "<from locate>",
+    "query": "SELECT Name, url FROM \"<from locate>\" LIMIT 100"
 }
 ```
+
+`data_source_url` and `query` come from the layer. This module does not own a collection ID. If the URL is missing, return `ok` false.
 
 ## Process
 
@@ -43,9 +45,9 @@ Artifact `NotionTaskRows`.
     "error": null,
     "rows": [
         {
-            "Name": "title !12",
+            "Name": "title !<iid>",
             "url": "https://app.notion.com/p/...",
-            "iid_tokens": ["12"]
+            "iid_tokens": ["<iid>"]
         }
     ]
 }

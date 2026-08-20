@@ -72,6 +72,7 @@ def empty_state(payload: dict[str, Any]) -> dict[str, Any]:
         "generic_leave_modules": [],
         "guest_sql_leave": False,
         "last_prompt": "",
+        "skill_module_writes": [],
     }
 
 
@@ -92,6 +93,8 @@ def load_state(payload: dict[str, Any]) -> dict[str, Any]:
         merged["read_paths"] = []
     if not isinstance(merged.get("generic_leave_modules"), list):
         merged["generic_leave_modules"] = []
+    if not isinstance(merged.get("skill_module_writes"), list):
+        merged["skill_module_writes"] = []
     return merged
 
 
@@ -101,13 +104,11 @@ def save_state(payload: dict[str, Any], state: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     encoded = json.dumps(state, ensure_ascii=False, indent=2) + "\n"
     fd, tmp_name = tempfile.mkstemp(prefix=path.name, dir=str(path.parent))
+    tmp_path = Path(tmp_name)
     try:
         with os.fdopen(fd, "w", encoding="utf-8") as handle:
             handle.write(encoded)
         os.replace(tmp_name, path)
     except OSError:
-        try:
-            os.unlink(tmp_name)
-        except OSError:
-            pass
+        tmp_path.unlink(missing_ok=True)
         raise

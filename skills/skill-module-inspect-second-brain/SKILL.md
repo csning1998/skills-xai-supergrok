@@ -19,19 +19,24 @@ A layer already named the Notion entity to locate.
 
 ```json
 {
-    "object": "Resources"
+    "object": "Resources",
+    "docs_root": "<second-brain docs root>"
 }
 ```
 
+`docs_root` is filled by the layer. This module does not own a home path.
+
 ## Process
 
-Read these files in order. Do not invent collection IDs. Do not write pages.
+Refuse the call when `object` or `docs_root` is missing. Return `ok` false.
 
-1. `~/.grok/docs/second-brain/00-operating-contract.md`
-2. `~/.grok/docs/second-brain/README.md`
-3. `~/.grok/docs/second-brain/02-master-catalog.md`
-4. `~/.grok/docs/second-brain/01-locate.md`
-5. `~/.grok/docs/second-brain/03-identifiers.md`
+Read these files under `docs_root` in order. Do not invent collection IDs. Do not write pages.
+
+1. `00-operating-contract.md`
+2. `README.md`
+3. `02-master-catalog.md`
+4. `01-locate.md`
+5. `03-identifiers.md`
 6. The entity file for `object`. Open `02-master-catalog.md` to resolve the path.
 
 ## Output
@@ -43,9 +48,9 @@ Artifact `SecondBrainLocate`.
     "ok": true,
     "error": null,
     "object": "Resources",
-    "collection": "collection://316919d4-1936-8163-bfbf-000bb3d012ce",
-    "data_source_id": "316919d4-1936-8163-bfbf-000bb3d012ce",
-    "entity_path": "~/.grok/docs/second-brain/60-knowledge/resources.md"
+    "collection": "collection://<from 03-identifiers.md>",
+    "data_source_id": "<from 03-identifiers.md>",
+    "entity_path": "<docs_root>/<entity file>"
 }
 ```
 
@@ -60,4 +65,4 @@ Artifact `SecondBrainLocate`.
 
 ## Example
 
-Layer sends `{"object":"Tasks"}`. Module returns the Tasks collection id.
+Layer sends `object` and `docs_root`. Module returns `SecondBrainLocate`.

@@ -42,7 +42,7 @@ A layer already chose products, URLs, and install roots.
 5. Extract the hub icon only when `extract_hub_icon` is true.
 
 ```bash
-python3 "$HOME/.grok/skills/skill-update-antigravity/scripts/probe.py"
+python3 scripts/probe.py
 ```
 
 ## Output

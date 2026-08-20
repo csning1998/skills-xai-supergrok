@@ -25,17 +25,18 @@ JSON from the calling layer.
     "url": "https://www.youtube.com/watch?v=ID",
     "outdir": "~/Videos",
     "playlist_end": 20,
-    "dateafter": null
+    "dateafter": null,
+    "archive_path": null
 }
 ```
 
-`outdir` is required when `mode` is `download`. `playlist_end` and `dateafter` may be `null`.
+`outdir` is required when `mode` is `download`. `playlist_end`, `dateafter`, and `archive_path` may be `null`.
 
 ## Process
 
 1. Refuse the call when `mode` or `url` is missing. Return `ok` false.
 2. For `list`, map the JSON onto `yt-dlp --flat-playlist --no-download`. Drop `--flat-playlist` and `--playlist-end` when `playlist_end` is null.
-3. For `download`, map `outdir` and `url` onto `yt-dlp -P`. Do not pass `--no-embed-metadata`.
+3. For `download`, map `outdir` and `url` onto `yt-dlp -P`. Pass `--download-archive` only when `archive_path` is not null. Do not pass `--no-embed-metadata`.
 4. Delete a sidecar `.info.json` if one appears.
 5. Return JSON. Do not choose a new URL.
 
@@ -50,7 +51,7 @@ yt-dlp --flat-playlist --no-download \
 yt-dlp \
   -P "<outdir>" \
   --no-overwrites \
-  --download-archive "$HOME/.config/yt-dlp/archive.txt" \
+  --download-archive "<archive_path>" \
   "<url>"
 ```
 

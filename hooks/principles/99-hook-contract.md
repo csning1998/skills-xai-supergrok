@@ -2,7 +2,7 @@
 
 This file is the complete form of Section 10 in `ENGINEERING_PRINCIPLES.md`. The baseline date is 2026-08-18.
 
-The PreToolUse hook is the only hook event that can deny a tool call. The SessionStart hook creates session state and injects no file. The UserPromptSubmit hook records owner leave phrases and injects no file. The PostToolUse hook on a read records the opened path.
+The PreToolUse hook is the only hook event that can deny a tool call. The Stop hook can block the agent from ending a turn. The SessionStart hook creates session state and injects no file. The UserPromptSubmit hook records owner leave phrases and injects no file. The PostToolUse hook on a read records the opened path. The PostToolUse hook on a skill-module write records the path and scans the file on disk.
 
 The PreToolUse hook inspects the tool name, the target path, and the text about to be written. The PreToolUse hook does not classify work from the wording of the owner's task. Two different phrasings of the same mutation receive the same decision.
 
@@ -27,7 +27,6 @@ The PreToolUse hook inspects the tool name, the target path, and the text about 
 ### Item A. Blocking Conditions
 
 1. The PreToolUse hook denies a write in each of the following cases.
-
     1. The target path is inside a repository covered by Section 1, and the current session has not opened the files that Section 1 requires.
     2. The target path is a generic module, and the current session has no leave that covers that path.
     3. The write adds an environment alias (`prod`, `stg`, `dev`) or adds `vault.production` or `vault = vault` inside a generic module.
@@ -36,17 +35,25 @@ The PreToolUse hook inspects the tool name, the target path, and the text about 
 
 A pre-existing fragment that already matched a forbidden pattern does not deny a write that only edits other lines. An image tag does not deny a write. A lock-file edit does not deny a write.
 
-2. **Behavior After Blocking**. After a deny, the executing Agent MUST print the rule identifier and the line numbers from the deny reason. The executing Agent MUST NOT rewrite the payload so that the pattern no longer matches while the same action remains. A rewrite of that kind is itself a violation.
+1. **Behavior After Blocking**. After a deny, the executing Agent MUST print the rule identifier and the line numbers from the deny reason. The executing Agent MUST NOT rewrite the payload so that the pattern no longer matches while the same action remains. A rewrite of that kind is itself a violation.
 
-3. **Exceptions**. Owner intent for a time-bounded exception MUST be a named entry in `planning/decisions.md`. The named entry MUST state the scope and the end date. A comment in code MUST NOT declare an exception. The PreToolUse hook does not read `planning/decisions.md` for exceptions. The named entry therefore does not disable Item A. A local experiment that must pass Item A requires `ENGINEERING_PRINCIPLES_HOOK=0`.
+2. **Exceptions**. Owner intent for a time-bounded exception MUST be a named entry in `planning/decisions.md`. The named entry MUST state the scope and the end date. A comment in code MUST NOT declare an exception. The PreToolUse hook does not read `planning/decisions.md` for exceptions. The named entry therefore does not disable Item A. A local experiment that must pass Item A requires `ENGINEERING_PRINCIPLES_HOOK=0`.
 
-## Section 4. Disabling
+## Section 4. Skill-module Statelessness
+
+1. **PreToolUse**. When the write target path contains `skill-module-`, or a shell redirect, `tee`, `cp`, `mv`, or `sed -i` destination contains `skill-module-`, the PreToolUse hook scans the composed file text, any heredoc body, and `echo` / `printf` / `sed` payloads. The rest of the shell command is not file content. A `search_replace` compose is the current file with `old_string` replaced by `new_string`. Disk reads stay under `workspaceRoot` or `~/.grok`.
+2. **PostToolUse**. After a successful mutation of a skill-module write target, the PostToolUse hook records that path and scans the file on disk.
+3. **Stop**. When the turn ends, the Stop hook reads each recorded skill-module path. A remaining denied token blocks the stop. The executing Agent MUST rewrite the file so that only placeholders remain.
+4. **Denied Tokens**. The hook denies a collection UUID, an absolute `/home/` or `$HOME/` owner path, the owner login, and the Failure Managements collection prefix `316919d4`. Placeholder tokens inside `<...>` are stripped before that identifier scan. The hook then parses JSON objects in the file with `json.JSONDecoder`. A mapping table key (`allowlist`, `type_from_conv`, `repo_area`, and the sibling keys) is denied when any string in that value is not a placeholder. An empty `{}` or `[]`, or a value whose strings are only placeholders, is allowed.
+5. **Required Correction**. After a deny or a Stop block, the executing Agent MUST move those values into layer JSON. The module file MUST keep placeholders only.
+
+## Section 5. Disabling
 
 1. **How to Disable**. The owner disables the hook by setting `ENGINEERING_PRINCIPLES_HOOK=0`.
 
 2. **Restrictions on Disabling**. `ENGINEERING_PRINCIPLES_HOOK=0` is allowed only on a local experiment. A CI job and any environment that produces a mergeable change MUST keep the hook enabled. A change produced while the hook is disabled MUST be re-checked with the hook enabled before the change is committed.
 
-## Section 5. Behavioral Requirements for the Executing Agent
+## Section 6. Behavioral Requirements for the Executing Agent
 
 1. **Scope Must Not Expand**. The executing Agent MUST mutate only the range that the owner named. When the executing Agent finds a defect outside the named range, the executing Agent MUST report the defect in text and MUST NOT edit the out-of-range defect.
 

@@ -48,9 +48,9 @@ Artifact `GitlabMrList`.
     "records": [
         {
             "id": 1,
-            "iid": 12,
+            "iid": 1,
             "title": "title",
-            "web_url": "https://gitlab.example/x/-/merge_requests/12",
+            "web_url": "https://gitlab.example/group/repo/-/merge_requests/1",
             "merged_at": "2026-08-06T09:34:38Z",
             "description": "body",
             "project": "group/repo"
@@ -59,7 +59,7 @@ Artifact `GitlabMrList`.
 }
 ```
 
-`description` has `\r\n` normalized to `\n`. `project` is `references.full` when present.
+`description` has `\r\n` normalized to `\n`. `project` is `references.full` when present. `iid` is copied from GitLab JSON. It is the project-scoped merge request number in the URL and in `!` references.
 
 ## Validation Checklist
 

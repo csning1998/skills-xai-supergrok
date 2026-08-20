@@ -67,11 +67,12 @@ Do not spawn bare `general-purpose` for `low` or `medium`. That child inherits t
 
 ### Item C. Module
 
-A `skill-module-*` file receives JSON. It maps that JSON onto one tool (yt-dlp, Buzz, Notion MCP, later an HTTP or gRPC client) and returns JSON.
-
-A module `SKILL.md` MUST set `effort: low`.
-
-A module MUST NOT decide Title, Author, Published, Description, content, or relation targets. A module MUST NOT read Second Brain to invent fill values.
+- A module `SKILL.md` MUST set `effort: low`.
+- A `skill-module-*` file receives JSON. It maps that JSON onto one tool (yt-dlp, Buzz, Notion MCP, later an HTTP or gRPC client) and returns JSON.
+- **A MODULE MUST BE ONLY STATELESS.**
+    - It MUST NOT bake collection IDs, group paths, mapping tables, or owner home paths into its contract. Input examples use placeholders the layer replaces.
+    - A module MUST NOT decide Title, Author, Published, Description, content, or relation targets.
+    - A module MUST NOT read Second Brain to invent fill values.
 
 ### Item D. Isolation
 

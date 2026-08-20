@@ -144,6 +144,8 @@ When the current session will mutate `terraform/`, `ansible/`, `packer/`, or `pl
 
 A mutation of `terraform/modules/` or `ansible/roles/utils_*` requires the owner phrase `leave generic module` in a prompt of the current session. After that phrase, the PreToolUse hook still denies a new environment alias, a tautological `vault = vault` map, and a product name inside the generic module.
 
+A write to a `skill-module-*` path that bakes a collection UUID, an owner home path, the owner login, or a mapping table is denied. After that write, the Stop hook blocks the turn until the file is stateless.
+
 The owner disables the hook by setting `ENGINEERING_PRINCIPLES_HOOK=0`.
 
 ---

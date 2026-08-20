@@ -26,7 +26,7 @@ Load `~/.grok/skills/modules/shared/notion-mcp.md`.
     "op": "create",
     "data_source_id": "<from locate>",
     "data_source_url": "<from locate>",
-    "payload_path": "/tmp/skill-youtube-to-resources/<id>/video-resource-payload.json",
+    "payload_path": "<payload_path>",
     "page_id": null,
     "lookup": {
         "property": "userDefined:URL",

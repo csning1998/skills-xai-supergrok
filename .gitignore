@@ -5,6 +5,7 @@
 !/.gitignore
 !/.gitattributes
 !/.gitlab-ci.yml
+!/.githooks
 !/pyproject.toml
 !/pyrightconfig.json
 !/uv.lock

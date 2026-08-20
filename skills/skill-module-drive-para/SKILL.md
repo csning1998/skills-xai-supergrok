@@ -21,9 +21,9 @@ Load `~/.grok/skills/modules/shared/notion-mcp.md`.
 
 ```json
 {
-    "root_names": ["01-Inbox", "02-Projects"],
-    "projects_collection": "collection://...",
-    "projects_query": "SELECT Name, Status, url FROM \"collection://...\" ORDER BY Status, Name",
+    "root_names": ["<folder-name>"],
+    "projects_collection": "<from locate>",
+    "projects_query": "SELECT Name, Status, url FROM \"<from locate>\" ORDER BY Status, Name",
     "create_folder_name": null,
     "trash_file_id": null
 }
@@ -46,7 +46,7 @@ Artifact `DriveCensus`.
 {
     "ok": true,
     "error": null,
-    "folders": [{ "name": "02-Projects", "id": "drive-id" }],
+    "folders": [{ "name": "<folder-name>", "id": "<drive-id>" }],
     "project_rows": [
         {
             "Name": "[P] x",
