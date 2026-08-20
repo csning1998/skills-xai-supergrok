@@ -47,11 +47,11 @@ Frontmatter `effort` on each `SKILL.md` is the spawn budget. Roles live in `~/.g
 
 ### Item C. Delivery
 
-- Layers: `skill-inspect-gitlab-mrs`, `skill-inspect-notion-tasks`, `skill-sync-gitlab-mrs-to-notion`
-- Modules: `skill-module-inspect-gitlab-mrs`, `skill-module-inspect-notion-tasks`, `skill-module-file-notion-resources`
-- Artifacts: `GitlabMrList`, `NotionTaskRows`, `TaskFiled`
+- Layers: `skill-inspect-gitlab-mrs`, `skill-inspect-notion-tasks`, `skill-sync-gitlab-mrs-to-notion`, `skill-apply-gitlab-mr-labels`
+- Modules: `skill-module-inspect-gitlab-mrs`, `skill-module-inspect-notion-tasks`, `skill-module-file-notion-resources`, `skill-module-gitlab-mr-labels`
+- Artifacts: `GitlabMrList`, `NotionTaskRows`, `TaskFiled`, `GitlabMrLabelResult`
 
-Task fill lives in `skill-sync-gitlab-mrs-to-notion` and `tasks.md`.
+Task fill lives in `skill-sync-gitlab-mrs-to-notion` and `tasks.md`. Label mapping tables live in `skill-apply-gitlab-mr-labels`.
 
 ### Item D. Workspace
 
