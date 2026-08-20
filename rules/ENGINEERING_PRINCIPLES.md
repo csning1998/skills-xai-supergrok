@@ -22,9 +22,7 @@
 
 ## Section 4. Repair Declarations, Not Guests
 
-宣告與現實不一致時，改宣告源頭，或 Assert 後停下。禁止在 guest 或 play 裡用 `psql`、`ALTER USER`、`local-exec` 側向修補。
-
-執行期修補無法追溯，下一次套用會再次漂移。
+宣告與現實不一致時，改宣告源頭，或 Assert 後停下。禁止把 `psql`、`ALTER USER`、`local-exec` 寫進 play、Terraform、Packer、腳本、Makefile 或 CI 當修補步驟。guest 上的唯讀偵錯不在 hook 閘內。用 guest SQL 改密碼或清 dirty 來蓋掉宣告漂移，下一次套用會再漂。該類命令需要當次 owner 片語 `allow guest sql`，且仍不得寫進檔案。
 
 ## Section 5. Stay In Scope
 

@@ -39,9 +39,24 @@ VAULT_CREDENTIAL_MODULE_RE = re.compile(
     r"modules/vault-provisioning/vault-credential|"
     r'source\s*=\s*"[^"]*vault-credential"'
 )
-ANSIBLE_SQL_RE = re.compile(
+IAC_SQL_RE = re.compile(
     r"(community\.postgresql|\bpostgresql_query\b|\bpostgresql_user\b|"
-    r"\bansible\.builtin\.shell\b[^\n]{0,80}\bpsql\b)",
+    r"\bansible\.builtin\.shell\b[^\n]{0,80}\bpsql\b|\bpsql\b|"
+    r"\bALTER\s+(?:USER|ROLE)\b)",
+    re.I,
+)
+MUTATING_SQL_RE = re.compile(
+    r"("
+    r"\bALTER\s+(?:USER|ROLE)\b"
+    r"|\bINSERT\s+INTO\b"
+    r"|\bUPDATE\s+\S+\s+SET\b"
+    r"|\bDELETE\s+FROM\b"
+    r"|\bTRUNCATE\s+"
+    r"|\bDROP\s+(?:DATABASE|TABLE|USER|ROLE|SCHEMA)\b"
+    r"|\bCREATE\s+(?:USER|ROLE)\b"
+    r"|\bGRANT\s+"
+    r"|\bREVOKE\s+"
+    r")",
     re.I,
 )
 GUEST_SQL_CMD_RE = re.compile(

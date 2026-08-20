@@ -8,14 +8,15 @@ from typing import Any
 
 from engineering_principles.config import ANSIBLE_IDEMPOTENT_RE
 from engineering_principles.config import ANSIBLE_SHELL_RE
-from engineering_principles.config import ANSIBLE_SQL_RE
 from engineering_principles.config import ENV_ALIAS_RE
 from engineering_principles.config import GENERIC_MODULE_NAME_RE
 from engineering_principles.config import GENERIC_MODULE_RE
 from engineering_principles.config import GUEST_SQL_CMD_RE
 from engineering_principles.config import HARDCODED_VAULT_PRODUCTION_RE
+from engineering_principles.config import IAC_SQL_RE
 from engineering_principles.config import LEAVE_GENERIC_RE
 from engineering_principles.config import LEAVE_GUEST_SQL_RE
+from engineering_principles.config import MUTATING_SQL_RE
 from engineering_principles.config import PRODUCT_TOKEN_RE
 from engineering_principles.config import PROVISIONER_RE
 from engineering_principles.config import RANDOM_PASSWORD_RE
@@ -30,6 +31,7 @@ from engineering_principles.paths import is_ansible_path
 from engineering_principles.paths import is_consumer_layer
 from engineering_principles.paths import is_generic_module
 from engineering_principles.paths import is_governed_path
+from engineering_principles.paths import is_iac_path
 from engineering_principles.paths import is_self_path
 from engineering_principles.paths import path_needs_planning_gate
 from engineering_principles.paths import posix
@@ -201,17 +203,21 @@ def missing_planning_reason(path: str, status: dict[str, Any]) -> str | None:
 
 
 def guest_sql_command_reason(state: dict[str, Any], command: str) -> str | None:
-    """Return a deny reason for a guest SQL shell command."""
+    """Return a deny reason for a mutating guest SQL shell command."""
     if not command or not GUEST_SQL_CMD_RE.search(command):
+        return None
+    if not MUTATING_SQL_RE.search(command):
         return None
     if state.get("guest_sql_leave"):
         return None
     return cite(
         "Section 3 Item A.5",
         command,
-        GUEST_SQL_CMD_RE,
-        "Guest SQL is forbidden. Do not run psql, ALTER USER, or "
-        "docker exec into a database to repair IaC drift.",
+        MUTATING_SQL_RE,
+        "Mutating guest SQL is forbidden. Do not run ALTER USER, "
+        "password reset, or other state changes to repair IaC drift. "
+        "Read-only psql debug does not need leave. Owner phrase for a "
+        "mutating guest command: allow guest sql.",
     )
 
 
@@ -257,20 +263,42 @@ def ansible_shell_reason(path: str, text: str, before: str) -> str | None:
     )
 
 
-def ansible_sql_reason(path: str, text: str, before: str) -> str | None:
-    """Return a deny reason for Ansible that embeds psql or postgresql."""
-    if not is_ansible_path(path):
+def _sql_doc_exception(text: str) -> bool:
+    """Return True when the text only forbids SQL rather than invoking it."""
+    return bool(re.search(r"(forbid|MUST NOT|do not).{0,40}psql", text, re.I))
+
+
+def iac_sql_reason(path: str, text: str, before: str) -> str | None:
+    """Return a deny reason for IaC that embeds psql or postgresql."""
+    if not is_iac_path(path):
         return None
-    if not added(before, text, ANSIBLE_SQL_RE):
+    if not added(before, text, IAC_SQL_RE):
         return None
-    if re.search(r"(forbid|MUST NOT|do not).{0,40}psql", text, re.I):
+    if _sql_doc_exception(text):
         return None
     return cite(
         "Section 3 Item A.5",
         text,
-        ANSIBLE_SQL_RE,
-        "Ansible must not run psql or community.postgresql to patch "
-        "guest passwords.",
+        IAC_SQL_RE,
+        "terraform, ansible, and packer files must not invoke psql, "
+        "ALTER USER, or community.postgresql to patch guest state.",
+    )
+
+
+def mutating_sql_file_reason(path: str, text: str, before: str) -> str | None:
+    """Return a deny reason for a non-IaC file that embeds mutating SQL."""
+    if is_iac_path(path):
+        return None
+    if not added(before, text, MUTATING_SQL_RE):
+        return None
+    if _sql_doc_exception(text):
+        return None
+    return cite(
+        "Section 3 Item A.5",
+        text,
+        MUTATING_SQL_RE,
+        "A script, Makefile, or CI file must not invoke ALTER USER or "
+        "other mutating SQL to patch declaration drift.",
     )
 
 
@@ -384,7 +412,10 @@ def evaluate_write(
     reason = ansible_shell_reason(path, text, before)
     if reason:
         return reason
-    reason = ansible_sql_reason(path, text, before)
+    reason = iac_sql_reason(path, text, before)
+    if reason:
+        return reason
+    reason = mutating_sql_file_reason(path, text, before)
     if reason:
         return reason
 

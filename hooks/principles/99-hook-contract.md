@@ -16,9 +16,9 @@ The PreToolUse hook inspects the tool name, the target path, and the text about 
 
 ## Section 2. Generic Module Authorization
 
-1. **Authorization Phrase**. A mutation of `terraform/modules/` or `ansible/roles/utils_*` requires one of the following phrases in an owner prompt of the current session. The phrases are `leave generic module` and `authorized to edit generic`. A guest SQL command requires `allow guest sql`. The UserPromptSubmit hook records that phrase. A request such as `fix that module` does not record leave.
+1. **Authorization Phrase**. A mutation of `terraform/modules/` or `ansible/roles/utils_*` requires one of the following phrases in an owner prompt of the current session. The phrases are `leave generic module` and `authorized to edit generic`. A mutating guest SQL command requires `allow guest sql`. A read-only guest `psql` session does not. The UserPromptSubmit hook records that phrase. A request such as `fix that module` does not record leave.
 
-2. **Still Prohibited After Authorization**. After leave is recorded, the PreToolUse hook still denies a newly added environment alias, a newly added `vault.production` address, a newly added `vault = vault` map, and a newly added product token in a variable name, resource name, tag key, or output key.
+2. **Still Prohibited After Authorization**. After generic leave is recorded, the PreToolUse hook still denies a newly added environment alias, a newly added `vault.production` address, a newly added `vault = vault` map, and a newly added product token in a variable name, resource name, tag key, or output key. After guest SQL leave is recorded, the PreToolUse hook still denies a write that embeds `psql`, `ALTER USER`, or `community.postgresql` in a file.
 
 3. **Authorization Scope**. Leave applies to the current session. When the owner prompt that carries the leave phrase also names a module path, the PreToolUse hook permits only a path that contains that name. When the owner prompt carries the leave phrase and names no module, the PreToolUse hook permits every generic-module path. Expanding the mutation to a module that the named list does not contain requires a new owner prompt that names that module.
 
@@ -31,7 +31,7 @@ The PreToolUse hook inspects the tool name, the target path, and the text about 
     2. The target path is a generic module, and the current session has no leave that covers that path.
     3. The write adds an environment alias (`prod`, `stg`, `dev`) or adds `vault.production` or `vault = vault` inside a generic module.
     4. The write adds a product name to a variable name, resource name, tag key, or output key inside a generic module.
-    5. The write adds a `local-exec` provisioner, a `remote-exec` provisioner, an Ansible `shell` or `command` task that lacks `changed_when` or `creates` or `removes`, a guest `psql` or `ALTER USER` command, or a mint (`random_password` or a vault-credential module call) inside a consumer layer.
+    5. The write adds a `local-exec` provisioner, a `remote-exec` provisioner, an Ansible `shell` or `command` task that lacks `changed_when` or `creates` or `removes`, a `psql` / `ALTER USER` / `community.postgresql` invocation inside a `terraform/`, `ansible/`, or `packer/` file, a mutating `psql` / `ALTER USER` invocation in any other write (including `scripts/`, a Makefile, and CI), or a mint (`random_password` or a vault-credential module call) inside a consumer layer. A read-only debug shell on a guest is outside this gate. Guest SQL that mutates state (password reset, dirty-flag clear) remains in scope.
 
 A pre-existing fragment that already matched a forbidden pattern does not deny a write that only edits other lines. An image tag does not deny a write. A lock-file edit does not deny a write.
 

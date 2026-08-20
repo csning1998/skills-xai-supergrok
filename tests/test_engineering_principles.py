@@ -157,7 +157,7 @@ def test_consumer_secret_and_mint_layer(workspace: Path) -> None:
 
 
 def test_guest_debug_and_readonly_commands(workspace: Path) -> None:
-    """Guest SQL commands need leave. Read-only mentions of psql stay."""
+    """Read-only guest psql is allowed. Mutating SQL needs leave."""
     payload = _payload(workspace)
     sql = "ssh harbor psql -c 'ALTER USER postgres PASSWORD foo'"
     assert "Section 3 Item A.5" in (evaluate_write(payload, "", "", sql) or "")
@@ -167,6 +167,9 @@ def test_guest_debug_and_readonly_commands(workspace: Path) -> None:
             payload, "", "", "git commit -m 'document ALTER USER flow'"
         )
         is None
+    )
+    assert (
+        evaluate_write(payload, "", "", "ssh dbhost psql -c 'select 1'") is None
     )
     assert "Section 3 Item A.5" in (
         evaluate_write(
@@ -246,11 +249,30 @@ def test_ansible_and_iac_sql(workspace: Path) -> None:
         )
         or ""
     )
-    assert (
+    assert "Section 3 Item A.5" in (
         evaluate_write(
             payload,
             _layer_path(workspace),
             'locals { cmd = "ssh dbhost psql -c select 1" }\n',
+            "",
+        )
+        or ""
+    )
+    script = str(workspace / "meta-platform/scripts/fix-db.sh")
+    assert "Section 3 Item A.5" in (
+        evaluate_write(
+            payload,
+            script,
+            "psql -c 'ALTER USER postgres PASSWORD foo'\n",
+            "",
+        )
+        or ""
+    )
+    assert (
+        evaluate_write(
+            payload,
+            str(workspace / "meta-platform/scripts/probe.sh"),
+            "psql -c 'select 1'\n",
             "",
         )
         is None
